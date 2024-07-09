@@ -27,16 +27,19 @@ function(check_git_submodule)
     endif()
 endfunction()
 
+add_executable(etsi_its_parser main.cpp)
+
 check_git_submodule(PATH vanetza REQUIRED_FILES CMakeLists.txt)
 set(VANETZA_INSTALL ON)
 add_subdirectory(${PROJECT_SOURCE_DIR}/vanetza)
+
 mark_as_advanced(BUILD_BENCHMARK BUILD_CERTIFY BUILD_SOCKTAP BUILD_TESTS BUILD_USING_CONAN)
 mark_as_advanced(VANETZA_ASN1_WITH_ASN1C VANETZA_EXPORT_PACKAGE VANETZA_NET_WITH_POSIX)
 
-check_git_submodule(PATH rapidjson REQUIRED_FILES CMakeLists.txt)
-add_subdirectory(${PROJECT_SOURCE_DIR}/rapidjson)
+target_link_libraries(etsi_its_parser Vanetza)
 
-check_git_submodule(PATH PcapPlusPlus REQUIRED_FILES CMakeLists.txt)
-add_subdirectory(${PROJECT_SOURCE_DIR}/PcapPlusPlus)
+#check_git_submodule(PATH rapidjson REQUIRED_FILES CMakeLists.txt)
+#add_subdirectory(${PROJECT_SOURCE_DIR}/rapidjson)
 
-add_executable(etsi_its_parser main.cpp)
+#check_git_submodule(PATH PcapPlusPlus REQUIRED_FILES CMakeLists.txt)
+#add_subdirectory(${PROJECT_SOURCE_DIR}/PcapPlusPlus)

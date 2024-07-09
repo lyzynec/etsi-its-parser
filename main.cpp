@@ -8,7 +8,7 @@
 // TODO
 
 /* Vanetza Includes */
-#include <vanetza/vanetza/asn1/spatem.hpp>
+#include <vanetza/asn1/spatem.hpp>
 
 int main() {
     vanetza::asn1::Spatem spatem;
