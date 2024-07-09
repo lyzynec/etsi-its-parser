@@ -4,3 +4,6 @@
 [submodule "rapidjson"]
 	path = rapidjson
 	url = https://github.com/Tencent/rapidjson.git
+[submodule "PcapPlusPlus"]
+	path = PcapPlusPlus
+	url = https://github.com/seladb/PcapPlusPlus.git
