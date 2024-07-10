@@ -1,9 +1,9 @@
-cmake_minimum_required(VERSION 3.4)
+cmake_minimum_required(VERSION 3.25)
 
 project(etsi_its_parser)
 
-set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_STANDARD 17)
+#set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_SUPPRESS_DEVELOPER_WARNINGS TRUE)
 
 include(CMakeParseArguments)
@@ -36,7 +36,7 @@ add_subdirectory(${PROJECT_SOURCE_DIR}/vanetza)
 mark_as_advanced(BUILD_BENCHMARK BUILD_CERTIFY BUILD_SOCKTAP BUILD_TESTS BUILD_USING_CONAN)
 mark_as_advanced(VANETZA_ASN1_WITH_ASN1C VANETZA_EXPORT_PACKAGE VANETZA_NET_WITH_POSIX)
 
-target_link_libraries(etsi_its_parser Vanetza)
+target_link_libraries(etsi_its_parser PUBLIC Vanetza::vanetza)
 
 #check_git_submodule(PATH rapidjson REQUIRED_FILES CMakeLists.txt)
 #add_subdirectory(${PROJECT_SOURCE_DIR}/rapidjson)
