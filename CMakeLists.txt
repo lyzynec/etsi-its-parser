@@ -27,7 +27,11 @@ function(check_git_submodule)
     endif()
 endfunction()
 
-add_executable(etsi_its_parser main.cpp)
+add_executable(etsi_its_parser main.cpp
+        headers.h
+        indicator.cpp
+        indicator.h
+)
 
 check_git_submodule(PATH vanetza REQUIRED_FILES CMakeLists.txt)
 set(VANETZA_INSTALL ON)
