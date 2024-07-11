@@ -31,7 +31,10 @@ add_executable(etsi_its_parser main.cpp
         headers.h
         indicator.cpp
         indicator.h
+        message_id.h
 )
+
+find_package(Boost REQUIRED)
 
 check_git_submodule(PATH vanetza REQUIRED_FILES CMakeLists.txt)
 set(VANETZA_INSTALL ON)

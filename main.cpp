@@ -1,5 +1,9 @@
 /* Standard Library Includes */
 #include <iostream>
+#include <string>
+
+/* Boost Includes */
+#include <boost/optional.hpp>
 
 /* PcapPlusPlus Includes */
 // TODO
@@ -8,85 +12,24 @@
 // TODO
 
 /* Vanetza Includes */
-#include <vanetza/asn1/spatem.hpp>
 #include <vanetza/asn1/packet_visitor.hpp>
+#include <vanetza/asn1/denm.hpp>
+#include <vanetza/asn1/cam.hpp>
+#include <vanetza/asn1/spatem.hpp>
+#include <vanetza/asn1/mapem.hpp>
+#include <vanetza/asn1/ivim.hpp>
+#include <vanetza/asn1/srem.hpp>
+#include <vanetza/asn1/ssem.hpp>
+#include <vanetza/asn1/cpm.hpp>
 
-#include <vanetza/btp/data_indication.hpp>
 
 
 #include "headers.h"
 #include "indicator.h"
+#include "message_id.h"
 
 
-int main() {
-
-    vanetza::ByteBuffer byteBuffer({
-                                           0x00, 0x00, 0x30, 0x00, 0x02, 0x00, 0x00, 0x40, // ..0....@
-                                           0x00, 0x00, 0x04, 0xe5, 0x48, 0x00, 0x20, 0x00, // ....H. .
-                                           0x01, 0x00, 0xf7, 0x01, 0x00, 0x00, 0x1d, 0x03, // ........
-                                           0x00, 0x00, 0xda, 0xc0, 0x00, 0x00, 0x00, 0x0b, // ........
-                                           0x01, 0x80, 0x00, 0x00, 0x04, 0x72, 0x4d, 0x50, // .....rMP
-                                           0x10, 0x13, 0x06, 0x00, 0xd7, 0x01, 0x00, 0x00, // ........
-                                           0x88, 0x00, 0x00, 0x00, 0xff, 0xff, 0xff, 0xff, // ........
-                                           0xff, 0xff, 0x42, 0xee, 0x24, 0xda, 0x9e, 0xd2, // ..B.$...
-                                           0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0x00, 0x00, // ........
-                                           0x01, 0x00, 0xaa, 0xaa, 0x03, 0x00, 0x00, 0x00, // ........
-                                           0x89, 0x47, 0x12, 0x00, 0x50, 0x02, 0x03, 0x81, // .G..P...
-                                           0x00, 0x40, 0x03, 0x80, 0x81, 0xaa, 0x20, 0x40, // .@.... @
-                                           0x03, 0x00, 0x00, 0x76, 0x02, 0x00, 0x57, 0x17, // ...v..W.
-                                           0x00, 0x00, 0xbc, 0xcb, 0x42, 0xee, 0x24, 0xda, // ....B.$.
-                                           0x9e, 0xd2, 0xaf, 0xb8, 0xc3, 0x6f, 0x1d, 0xec, // .....o..
-                                           0x66, 0xd9, 0x09, 0x6e, 0x40, 0x03, 0x80, 0x00, // f..n@...
-                                           0x00, 0x00, 0x1d, 0xec, 0x66, 0xd9, 0x09, 0x6e, // ....f..n
-                                           0x40, 0x03, 0x01, 0x90, 0x00, 0x00, 0x00, 0x00, // @.......
-                                           0x00, 0x00, 0x07, 0xd4, 0x00, 0x00, 0x02, 0x04, // ........
-                                           0x84, 0xda, 0x9e, 0xd2, 0x00, 0x38, 0x92, 0x5b, // .....8.[
-                                           0x17, 0x08, 0x16, 0xa0, 0xa1, 0x42, 0x82, 0x05, // .....B..
-                                           0xa8, 0x29, 0x61, 0x7e, 0xff, 0x76, 0xfe, 0xd8, // .)a~.v..
-                                           0x50, 0x74, 0x7e, 0xff, 0x26, 0x14, 0x1e, 0x10, // Pt~.&...
-                                           0x53, 0xdf, 0xaf, 0x7e, 0xce, 0x7a, 0xdf, 0xc0, // S..~.z..
-                                           0x00, 0x00, 0x2d, 0x40, 0x81, 0x00, 0x0f, 0x28, // ..-@...(
-                                           0xde, 0xcb, 0xa0, 0x1a, 0x03, 0x5a, 0x40, 0x08, // .....Z@.
-                                           0x22, 0x79, 0xc1, 0x4d, 0xc1, 0xa5, 0xc1, 0xa5, // "y.M....
-                                           0xc1, 0x9f, 0xd0, 0x28, 0x74, 0x24, 0x01, 0x02, // ...(t$..
-                                           0x1f, 0x9c, 0x0a, 0xdc, 0x30, 0xde, 0x92, 0xc4, // ....0...
-                                           0x9d, 0x41, 0x01, 0xad, 0x1c, 0x0c, 0x11, 0x7c, // .A.....|
-                                           0xdd, 0x5e, 0xe0, 0xbe, 0xf4, 0x96, 0x1b, 0x3a, // .^.....:
-                                           0x08, 0x14, 0x3a, 0x11, 0xc1, 0x01, 0x0f, 0xcd, // ..:.....
-                                           0xce, 0x6e, 0x10, 0xef, 0x49, 0x61, 0xb8, 0xa0, // .n..Ia..
-                                           0x40, 0x01, 0x89, 0x00, 0x02, 0x44, 0xce, 0x69, // @....D.i
-                                           0xbb, 0x6d, 0x80, 0x81, 0x01, 0x01, 0x80, 0x03, // .m......
-                                           0x00, 0x80, 0xc1, 0x77, 0x37, 0x08, 0x2f, 0x1c, // ...w7./.
-                                           0xc2, 0xc2, 0x10, 0x83, 0x00, 0x00, 0x00, 0x00, // ........
-                                           0x00, 0x26, 0x0e, 0x97, 0xb1, 0x84, 0x00, 0xa8, // .&......
-                                           0x01, 0x06, 0x80, 0x01, 0x24, 0x81, 0x04, 0x03, // ....$...
-                                           0x01, 0x80, 0x00, 0x80, 0x01, 0x25, 0x81, 0x05, // .....%..
-                                           0x04, 0x01, 0xdf, 0xfa, 0xee, 0x80, 0x01, 0x89, // ........
-                                           0x81, 0x03, 0x02, 0x01, 0xe0, 0x80, 0x01, 0x8a, // ........
-                                           0x81, 0x03, 0x02, 0x01, 0xc0, 0x00, 0x01, 0x8d, // ........
-                                           0x80, 0x02, 0x02, 0x7d, 0x81, 0x02, 0x01, 0x01, // ...}....
-                                           0x80, 0x80, 0x82, 0x65, 0x1d, 0x59, 0xc2, 0x2f, // ...e.Y./
-                                           0x4c, 0x5f, 0xb6, 0x2a, 0xc2, 0x0b, 0xa9, 0xd5, // L_.*....
-                                           0x3f, 0x0d, 0xb1, 0x03, 0x83, 0xc6, 0x2e, 0xbf, // ?.......
-                                           0x8e, 0x43, 0xd3, 0x28, 0x32, 0x9e, 0xac, 0x58, // .C.(2..X
-                                           0x7e, 0xc5, 0x79, 0x80, 0x80, 0xf9, 0xc8, 0x1e, // ~.y.....
-                                           0xdd, 0xad, 0xdd, 0x60, 0x04, 0x73, 0x93, 0xd4, // ...`.s..
-                                           0x94, 0x96, 0xf8, 0x6e, 0x3a, 0x5c, 0xc6, 0x45, // ...n:\.E
-                                           0x27, 0x67, 0xcb, 0xe0, 0x54, 0x83, 0x86, 0x5d, // 'g..T..]
-                                           0x99, 0xff, 0xe5, 0x46, 0xa3, 0x27, 0xc8, 0x00, // ...F.'..
-                                           0x22, 0x72, 0x64, 0x8f, 0x6a, 0x6c, 0x5d, 0xe1, // "rd.jl].
-                                           0xd7, 0x06, 0x50, 0xd2, 0xab, 0x99, 0xf1, 0x10, // ..P.....
-                                           0x91, 0xdc, 0x52, 0x36, 0xff, 0xbe, 0x5f, 0x64, // ..R6.._d
-                                           0x3d, 0x54, 0xd5, 0x1e, 0x33, 0x80, 0x80, 0xe2, // =T..3...
-                                           0x40, 0x35, 0x38, 0xb1, 0xf4, 0x01, 0x80, 0x8f, // @58.....
-                                           0x27, 0x65, 0x37, 0x1d, 0xc8, 0x89, 0xaf, 0x78, // 'e7....x
-                                           0x44, 0xa4, 0xf5, 0xe6, 0x4b, 0x41, 0xf6, 0xd2, // D...KA..
-                                           0x8a, 0x3b, 0x79, 0x21, 0x88, 0x93, 0x6c, 0x21, // .;y!..l!
-                                           0x9e, 0x59, 0x57, 0xb7, 0xfb, 0x45, 0x0b, 0xd7, // .YW..E..
-                                           0x91, 0x3b, 0xd5, 0xef, 0xb2, 0x68, 0x87, 0x56, // .;...h.V
-                                           0x15, 0x0c, 0x64, 0x3f, 0x16, 0xe4, 0x03, 0xc7, // ..d?....
-                                           0x49, 0xc7, 0x89, 0xf8, 0x4b, 0x31, 0x62        // I...K1b
-                                   });
+boost::optional<std::string> parse_msg_radiotap(vanetza::ByteBuffer byteBuffer) {
 
     size_t header_length = 0;
     auto radiotap = *(radiotap_header_t*)&(byteBuffer[header_length]);
@@ -97,10 +40,6 @@ int main() {
 
     auto logical_link_control = *(logical_link_control_t *)&(byteBuffer[header_length]);
     header_length += sizeof(logical_link_control_t);
-
-    std::cout << "Header length: " << header_length << std::endl;
-
-
 
     byteBuffer.erase(byteBuffer.begin(), byteBuffer.begin() + (long)header_length);
 
@@ -124,22 +63,103 @@ int main() {
     auto finishedPacketPtr = indicate(std::move(packet), sender, destination);
 
     if (finishedPacketPtr == nullptr) {
-        return -1;
+        return boost::none;
     }
 
     auto finishedPacket = *finishedPacketPtr;
 
-    vanetza::asn1::PacketVisitor<vanetza::asn1::Spatem> visitor;
-    std::shared_ptr<const vanetza::asn1::Spatem> spatem = boost::apply_visitor(visitor, finishedPacket);
-    if (spatem == nullptr) {
-        std::cout << "-- Vanetza Decoding Error --\nReceived an encoded SPATEM message that does not meet ETSI spec" << std::endl;
-        //std::cout << "\nInvalid sender: " << cp. << std::endl;
-        return -1;
+    uint8_t messageID;
+    if (vanetza::ChunkPacket* pChunk = boost::get<vanetza::ChunkPacket>(&finishedPacket)) {
+        // there is something really wrong if this happens
+        return boost::none;
+    } else if (vanetza::CohesivePacket* pCohes = boost::get<vanetza::CohesivePacket>(&finishedPacket)) {
+        auto applicationBuffer = (*pCohes)[vanetza::OsiLayer::Application];
+        messageID = applicationBuffer[1];
+    } else {
+        // this time its wrong like if the universe ended bro
+        return boost::none;
     }
-    SPATEM_t spatem_t = {(*spatem)->header, (*spatem)->spat};
 
-    std::cout << "StationID: " << spatem_t.header.stationID << std::endl;
+    std::string result;
+
+    if (messageID == MESSAGE_ID_DENM) {
+        vanetza::asn1::PacketVisitor<vanetza::asn1::Denm> visitor;
+        std::shared_ptr<const vanetza::asn1::Denm> denm = boost::apply_visitor(visitor, finishedPacket);
+        if (denm == nullptr) {
+            return boost::none;
+        }
+
+        DENM_t cDenm = {(*denm)->header, (*denm)->denm};
+
+    } else if (messageID == MESSAGE_ID_CAM) {
+        vanetza::asn1::PacketVisitor<vanetza::asn1::Cam> visitor;
+        std::shared_ptr<const vanetza::asn1::Cam> cam = boost::apply_visitor(visitor, finishedPacket);
+        if (cam == nullptr) {
+            return boost::none;
+        }
+
+        CAM_t cCam = {(*cam)->header, (*cam)->cam};
+
+    } else if (messageID == MESSAGE_ID_SPATEM) {
+        vanetza::asn1::PacketVisitor<vanetza::asn1::Spatem> visitor;
+        std::shared_ptr<const vanetza::asn1::Spatem> spatem = boost::apply_visitor(visitor, finishedPacket);
+        if (spatem == nullptr) {
+            return boost::none;
+        }
+
+        SPATEM_t cSpatem = {(*spatem)->header, (*spatem)->spat};
+
+    } else if (messageID == MESSAGE_ID_MAPEM) {
+        vanetza::asn1::PacketVisitor<vanetza::asn1::Mapem> visitor;
+        std::shared_ptr<const vanetza::asn1::Mapem> mapem = boost::apply_visitor(visitor, finishedPacket);
+        if (mapem == nullptr) {
+            return boost::none;
+        }
+
+        MAPEM_t cMapem = {(*mapem)->header, (*mapem)->map};
+
+    } else if (messageID == MESSAGE_ID_IVIM) {
+        vanetza::asn1::PacketVisitor<vanetza::asn1::Ivim> visitor;
+        std::shared_ptr<const vanetza::asn1::Ivim> ivim = boost::apply_visitor(visitor, finishedPacket);
+        if (ivim == nullptr) {
+            return boost::none;
+        }
+
+        IVIM_t cIvim = {(*ivim)->header, (*ivim)->ivi};
+
+    } else if (messageID == MESSAGE_ID_SREM) {
+        vanetza::asn1::PacketVisitor<vanetza::asn1::Srem> visitor;
+        std::shared_ptr<const vanetza::asn1::Srem> srem = boost::apply_visitor(visitor, finishedPacket);
+        if (srem == nullptr) {
+            return boost::none;
+        }
+
+        SREM_t cSrem = {(*srem)->header, (*srem)->srm};
+
+    } else if (messageID == MESSAGE_ID_SSEM) {
+        vanetza::asn1::PacketVisitor<vanetza::asn1::Ssem> visitor;
+        std::shared_ptr<const vanetza::asn1::Ssem> ssem = boost::apply_visitor(visitor, finishedPacket);
+        if (ssem == nullptr) {
+            return boost::none;
+        }
+
+        SSEM_t cSsem = {(*ssem)->header, (*ssem)->ssm};
+
+    } else if (messageID == MESSAGE_ID_CPM) {
+        vanetza::asn1::PacketVisitor<vanetza::asn1::Cpm> visitor;
+        std::shared_ptr<const vanetza::asn1::Cpm> cpm = boost::apply_visitor(visitor, finishedPacket);
+        if (cpm == nullptr) {
+            return boost::none;
+        }
+
+        CPM_t cCpm = {(*cpm)->header, (*cpm)->cpm};
+
+    }
 
 
+    return result;
+}
+
+int main() {
     return 0;
 }
