@@ -27,7 +27,7 @@ Value to_json(const long& p, Document::AllocatorType& allocator) {
 }
 
 void from_json(const Value& j, long& p, std::string field) {
-    try {  
+    try {
         p = j.IsDouble() ? static_cast<long>(j.GetDouble()) : j.GetInt64();
     } catch(VanetzaJSONException& ex) {
         ex.addContext(field);
@@ -40,7 +40,7 @@ Value to_json(const unsigned long* p, Document::AllocatorType& allocator) {
 }
 
 void from_json(const Value& j, long* p, std::string field) {
-    try {  
+    try {
         *p = j.IsDouble() ? static_cast<long>(j.GetDouble()) : j.GetInt64();
     } catch(VanetzaJSONException& ex) {
         ex.addContext(field);
@@ -102,7 +102,7 @@ void from_json(const Value& j, bool& p, std::string field) {
 }
 
 Value to_json(const OCTET_STRING_t& p, Document::AllocatorType& allocator) {
-    Value json(kObjectType); 
+    Value json(kObjectType);
     return json;
     // TODO
 }
@@ -112,7 +112,7 @@ void from_json(const Value& j, OCTET_STRING_t& p, std::string field) {
 }
 
 Value to_json(const NULL_t& p, Document::AllocatorType& allocator) {
-    Value json(kObjectType); 
+    Value json(kObjectType);
     return json;
     // TODO
 }
@@ -183,20 +183,20 @@ void from_json_ETSI_ITS_CDD_AccelerationControl(const Value& j, ETSI_ITS_CDD_Acc
 
 Value to_json_ETSI_ITS_CDD_CountryCode(const ETSI_ITS_CDD_CountryCode_t p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
-    
+
     return json;
 }
 
 void from_json_ETSI_ITS_CDD_CountryCode(const Value& j, ETSI_ITS_CDD_CountryCode_t& p, std::string field) {
     try {
         ETSI_ITS_CDD_CountryCode_t* p_tmp = vanetza::asn1::allocate<ETSI_ITS_CDD_CountryCode_t>();
-        
-        
+
+
         p_tmp->size = (0 / 8) + 1;
         p_tmp->bits_unused = (0 % 8) != 0 ? 8 - (0 % 8) : 0;
         p_tmp->buf = (uint8_t *) calloc(1, sizeof(uint8_t) * p_tmp->size);
         *(p_tmp->buf + (sizeof(uint8_t) * 0)) = (uint8_t) 0;
-        
+
         p = *p_tmp;
         delete p_tmp;
     } catch(VanetzaJSONException& ex) {
@@ -212,20 +212,20 @@ void from_json_ETSI_ITS_CDD_CountryCode(const Value& j, ETSI_ITS_CDD_CountryCode
 
 Value to_json_ETSI_ITS_CDD_DrivingLaneStatus(const ETSI_ITS_CDD_DrivingLaneStatus_t p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
-    
+
     return json;
 }
 
 void from_json_ETSI_ITS_CDD_DrivingLaneStatus(const Value& j, ETSI_ITS_CDD_DrivingLaneStatus_t& p, std::string field) {
     try {
         ETSI_ITS_CDD_DrivingLaneStatus_t* p_tmp = vanetza::asn1::allocate<ETSI_ITS_CDD_DrivingLaneStatus_t>();
-        
-        
+
+
         p_tmp->size = (0 / 8) + 1;
         p_tmp->bits_unused = (0 % 8) != 0 ? 8 - (0 % 8) : 0;
         p_tmp->buf = (uint8_t *) calloc(1, sizeof(uint8_t) * p_tmp->size);
         *(p_tmp->buf + (sizeof(uint8_t) * 0)) = (uint8_t) 0;
-        
+
         p = *p_tmp;
         delete p_tmp;
     } catch(VanetzaJSONException& ex) {
@@ -863,7 +863,7 @@ Value to_json(const AccelerationComponent_t& p, Document::AllocatorType& allocat
     Value json(kObjectType);
     json.AddMember("value", to_json((p.value), allocator), allocator);
     json.AddMember("confidence", to_json(((p.confidence) == 102) ? (p.confidence) : (double)(p.confidence) / 10.0, allocator), allocator);
-    
+
     return json;
 }
 
@@ -889,7 +889,7 @@ Value to_json(const ETSI_ITS_CDD_AccelerationChangeIndication_t& p, Document::Al
     Value json(kObjectType);
     json.AddMember("accelOrDecel", to_json((p.accelOrDecel), allocator), allocator);
     json.AddMember("actionDeltaTime", to_json((p.actionDeltaTime), allocator), allocator);
-    
+
     return json;
 }
 
@@ -915,7 +915,7 @@ Value to_json(const AccelerationMagnitude_t& p, Document::AllocatorType& allocat
     Value json(kObjectType);
     json.AddMember("accelerationMagnitudeValue", to_json((p.accelerationMagnitudeValue), allocator), allocator);
     json.AddMember("accelerationConfidence", to_json(((p.accelerationConfidence) == 102) ? (p.accelerationConfidence) : (double)(p.accelerationConfidence) / 10.0, allocator), allocator);
-    
+
     return json;
 }
 
@@ -941,7 +941,7 @@ Value to_json(const ActionId_t& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("originatingStationId", to_json((p.originatingStationId), allocator), allocator);
     json.AddMember("sequenceNumber", to_json((p.sequenceNumber), allocator), allocator);
-    
+
     return json;
 }
 
@@ -967,7 +967,7 @@ Value to_json(const ETSI_ITS_CDD_ActionID_t& p, Document::AllocatorType& allocat
     Value json(kObjectType);
     json.AddMember("originatingStationId", to_json((p.originatingStationId), allocator), allocator);
     json.AddMember("sequenceNumber", to_json((p.sequenceNumber), allocator), allocator);
-    
+
     return json;
 }
 
@@ -1025,7 +1025,7 @@ Value to_json(const ETSI_ITS_CDD_Altitude_t& p, Document::AllocatorType& allocat
     Value json(kObjectType);
     json.AddMember("altitudeValue", to_json(((p.altitudeValue) == 800001) ? (p.altitudeValue) : (double)(p.altitudeValue) / 100.0, allocator), allocator);
     json.AddMember("altitudeConfidence", to_json((p.altitudeConfidence), allocator), allocator);
-    
+
     return json;
 }
 
@@ -1085,7 +1085,7 @@ Value to_json(const CartesianAngle_t& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("value", to_json(((p.value) == 3601) ? (p.value) : (double)(p.value) / 10.0, allocator), allocator);
     json.AddMember("confidence", to_json((p.confidence), allocator), allocator);
-    
+
     return json;
 }
 
@@ -1111,7 +1111,7 @@ Value to_json(const CartesianAngularVelocityComponent_t& p, Document::AllocatorT
     Value json(kObjectType);
     json.AddMember("value", to_json((p.value), allocator), allocator);
     json.AddMember("confidence", to_json((p.confidence), allocator), allocator);
-    
+
     return json;
 }
 
@@ -1137,7 +1137,7 @@ Value to_json(const CartesianAngularAccelerationComponent_t& p, Document::Alloca
     Value json(kObjectType);
     json.AddMember("value", to_json((p.value), allocator), allocator);
     json.AddMember("confidence", to_json((p.confidence), allocator), allocator);
-    
+
     return json;
 }
 
@@ -1163,7 +1163,7 @@ Value to_json(const CartesianCoordinateWithConfidence_t& p, Document::AllocatorT
     Value json(kObjectType);
     json.AddMember("value", to_json((p.value), allocator), allocator);
     json.AddMember("confidence", to_json((p.confidence), allocator), allocator);
-    
+
     return json;
 }
 
@@ -1245,7 +1245,7 @@ Value to_json(const ETSI_ITS_CDD_CauseCode_t& p, Document::AllocatorType& alloca
     Value json(kObjectType);
     json.AddMember("causeCode", to_json((p.causeCode), allocator), allocator);
     json.AddMember("subCauseCode", to_json((p.subCauseCode), allocator), allocator);
-    
+
     return json;
 }
 
@@ -1937,7 +1937,7 @@ void from_json(const Value& j, CauseCodeChoice_t& p, std::string field) {
 Value to_json(const CauseCodeV2_t& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("ccAndScc", to_json((p.ccAndScc), allocator), allocator);
-    
+
     return json;
 }
 
@@ -2017,7 +2017,7 @@ void from_json(const Value& j, CircularShape_t& p, std::string field) {
 
 Value to_json(const ETSI_ITS_CDD_ClosedLanes_t& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
-    
+
     if (p.innerhardShoulderStatus != 0) json.AddMember("innerhardShoulderStatus", to_json(*(p.innerhardShoulderStatus), allocator), allocator);
     if (p.outerhardShoulderStatus != 0) json.AddMember("outerhardShoulderStatus", to_json(*(p.outerhardShoulderStatus), allocator), allocator);
     if (p.drivingLaneStatus != 0) json.AddMember("drivingLaneStatus", to_json_ETSI_ITS_CDD_DrivingLaneStatus(*(p.drivingLaneStatus), allocator), allocator);
@@ -2050,7 +2050,7 @@ Value to_json(const ETSI_ITS_CDD_ClusterBreakupInfo_t& p, Document::AllocatorTyp
     Value json(kObjectType);
     json.AddMember("clusterBreakupReason", to_json((p.clusterBreakupReason), allocator), allocator);
     json.AddMember("breakupTime", to_json((p.breakupTime), allocator), allocator);
-    
+
     return json;
 }
 
@@ -2076,7 +2076,7 @@ Value to_json(const ETSI_ITS_CDD_ClusterJoinInfo_t& p, Document::AllocatorType& 
     Value json(kObjectType);
     json.AddMember("clusterId", to_json((p.clusterId), allocator), allocator);
     json.AddMember("joinTime", to_json((p.joinTime), allocator), allocator);
-    
+
     return json;
 }
 
@@ -2102,7 +2102,7 @@ Value to_json(const ETSI_ITS_CDD_ClusterLeaveInfo_t& p, Document::AllocatorType&
     Value json(kObjectType);
     json.AddMember("clusterId", to_json((p.clusterId), allocator), allocator);
     json.AddMember("clusterLeaveReason", to_json((p.clusterLeaveReason), allocator), allocator);
-    
+
     return json;
 }
 
@@ -2160,7 +2160,7 @@ Value to_json(const ETSI_ITS_CDD_Curvature_t& p, Document::AllocatorType& alloca
     Value json(kObjectType);
     json.AddMember("curvatureValue", to_json((p.curvatureValue), allocator), allocator);
     json.AddMember("curvatureConfidence", to_json((p.curvatureConfidence), allocator), allocator);
-    
+
     return json;
 }
 
@@ -2225,7 +2225,7 @@ Value to_json(const ETSI_ITS_CDD_DeltaReferencePosition_t& p, Document::Allocato
     json.AddMember("deltaLatitude", to_json((p.deltaLatitude), allocator), allocator);
     json.AddMember("deltaLongitude", to_json((p.deltaLongitude), allocator), allocator);
     json.AddMember("deltaAltitude", to_json((p.deltaAltitude), allocator), allocator);
-    
+
     return json;
 }
 
@@ -2423,7 +2423,7 @@ Value to_json(const ETSI_ITS_CDD_Heading_t& p, Document::AllocatorType& allocato
     Value json(kObjectType);
     json.AddMember("headingValue", to_json(((p.headingValue) == 3601) ? (p.headingValue) : (double)(p.headingValue) / 10.0, allocator), allocator);
     json.AddMember("headingConfidence", to_json(((p.headingConfidence) == 126 || (p.headingConfidence) == 127) ? (p.headingConfidence) : (double)(p.headingConfidence) / 10.0, allocator), allocator);
-    
+
     return json;
 }
 
@@ -2449,7 +2449,7 @@ Value to_json(const ETSI_ITS_CDD_HeadingChangeIndication_t& p, Document::Allocat
     Value json(kObjectType);
     json.AddMember("direction", to_json((p.direction), allocator), allocator);
     json.AddMember("actionDeltaTime", to_json((p.actionDeltaTime), allocator), allocator);
-    
+
     return json;
 }
 
@@ -2476,7 +2476,7 @@ Value to_json(const ETSI_ITS_CDD_InterferenceManagementChannel_t& p, Document::A
     json.AddMember("centreFrequency", to_json((p.centreFrequency), allocator), allocator);
     json.AddMember("channelWidth", to_json((p.channelWidth), allocator), allocator);
     json.AddMember("exponent", to_json((p.exponent), allocator), allocator);
-    
+
     return json;
 }
 
@@ -2530,7 +2530,7 @@ Value to_json(const ETSI_ITS_CDD_ItsPduHeader_t& p, Document::AllocatorType& all
     json.AddMember("protocolVersion", to_json((p.protocolVersion), allocator), allocator);
     json.AddMember("messageId", to_json((p.messageId), allocator), allocator);
     json.AddMember("stationId", to_json((p.stationId), allocator), allocator);
-    
+
     return json;
 }
 
@@ -2558,7 +2558,7 @@ Value to_json(const LanePositionAndType_t& p, Document::AllocatorType& allocator
     json.AddMember("transversalPosition", to_json((p.transversalPosition), allocator), allocator);
     json.AddMember("laneType", to_json((p.laneType), allocator), allocator);
     json.AddMember("direction", to_json((p.direction), allocator), allocator);
-    
+
     return json;
 }
 
@@ -2588,7 +2588,7 @@ Value to_json(const LanePositionWithLateralDetails_t& p, Document::AllocatorType
     json.AddMember("direction", to_json((p.direction), allocator), allocator);
     json.AddMember("distanceToLeftBorder", to_json((p.distanceToLeftBorder), allocator), allocator);
     json.AddMember("distanceToRightBorder", to_json((p.distanceToRightBorder), allocator), allocator);
-    
+
     return json;
 }
 
@@ -2617,7 +2617,7 @@ Value to_json(const ETSI_ITS_CDD_LateralAcceleration_t& p, Document::AllocatorTy
     Value json(kObjectType);
     json.AddMember("lateralAccelerationValue", to_json(((p.lateralAccelerationValue) == 161) ? (p.lateralAccelerationValue) : (double)(p.lateralAccelerationValue) / 10.0, allocator), allocator);
     json.AddMember("lateralAccelerationConfidence", to_json(((p.lateralAccelerationConfidence) == 102) ? (p.lateralAccelerationConfidence) : (double)(p.lateralAccelerationConfidence) / 10.0, allocator), allocator);
-    
+
     return json;
 }
 
@@ -2643,7 +2643,7 @@ Value to_json(const ETSI_ITS_CDD_LongitudinalAcceleration_t& p, Document::Alloca
     Value json(kObjectType);
     json.AddMember("longitudinalAccelerationValue", to_json(((p.longitudinalAccelerationValue) == 161) ? (p.longitudinalAccelerationValue) : (double)(p.longitudinalAccelerationValue) / 10.0, allocator), allocator);
     json.AddMember("longitudinalAccelerationConfidence", to_json(((p.longitudinalAccelerationConfidence) == 102) ? (p.longitudinalAccelerationConfidence) : (double)(p.longitudinalAccelerationConfidence) / 10.0, allocator), allocator);
-    
+
     return json;
 }
 
@@ -2669,7 +2669,7 @@ Value to_json(const LongitudinalLanePosition_t& p, Document::AllocatorType& allo
     Value json(kObjectType);
     json.AddMember("longitudinalLanePositionValue", to_json((p.longitudinalLanePositionValue), allocator), allocator);
     json.AddMember("longitudinalLanePositionConfidence", to_json((p.longitudinalLanePositionConfidence), allocator), allocator);
-    
+
     return json;
 }
 
@@ -2791,7 +2791,7 @@ Value to_json(const MessageRateHz_t& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("mantissa", to_json((p.mantissa), allocator), allocator);
     json.AddMember("exponent", to_json((p.exponent), allocator), allocator);
-    
+
     return json;
 }
 
@@ -2817,7 +2817,7 @@ Value to_json(const MessageSegmentationInfo_t& p, Document::AllocatorType& alloc
     Value json(kObjectType);
     json.AddMember("totalMsgNo", to_json((p.totalMsgNo), allocator), allocator);
     json.AddMember("thisMsgNo", to_json((p.thisMsgNo), allocator), allocator);
-    
+
     return json;
 }
 
@@ -2906,7 +2906,7 @@ Value to_json(const ObjectDimension_t& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("value", to_json((double)(p.value) / 10.0, allocator), allocator);
     json.AddMember("confidence", to_json((p.confidence), allocator), allocator);
-    
+
     return json;
 }
 
@@ -3023,7 +3023,7 @@ Value to_json(const ETSI_ITS_CDD_PosConfidenceEllipse_t& p, Document::AllocatorT
     json.AddMember("semiMajorConfidence", to_json((p.semiMajorConfidence), allocator), allocator);
     json.AddMember("semiMinorConfidence", to_json((p.semiMinorConfidence), allocator), allocator);
     json.AddMember("semiMajorOrientation", to_json(((p.semiMajorOrientation) == 3601) ? (p.semiMajorOrientation) : (double)(p.semiMajorOrientation) / 10.0, allocator), allocator);
-    
+
     return json;
 }
 
@@ -3051,7 +3051,7 @@ Value to_json(const PositionConfidenceEllipse_t& p, Document::AllocatorType& all
     json.AddMember("semiMajorAxisLength", to_json((p.semiMajorAxisLength), allocator), allocator);
     json.AddMember("semiMinorAxisLength", to_json((p.semiMinorAxisLength), allocator), allocator);
     json.AddMember("semiMajorAxisOrientation", to_json((p.semiMajorAxisOrientation), allocator), allocator);
-    
+
     return json;
 }
 
@@ -3176,7 +3176,7 @@ Value to_json(const ETSI_ITS_CDD_Provider_t& p, Document::AllocatorType& allocat
     Value json(kObjectType);
     json.AddMember("countryCode", to_json_AVIAEINumberingAndDataStructures_CountryCode((p.countryCode), allocator), allocator);
     json.AddMember("providerIdentifier", to_json((p.providerIdentifier), allocator), allocator);
-    
+
     return json;
 }
 
@@ -3202,7 +3202,7 @@ Value to_json(const ETSI_ITS_CDD_PtActivation_t& p, Document::AllocatorType& all
     Value json(kObjectType);
     json.AddMember("ptActivationType", to_json((p.ptActivationType), allocator), allocator);
     json.AddMember("ptActivationData", to_json((p.ptActivationData), allocator), allocator);
-    
+
     return json;
 }
 
@@ -3333,7 +3333,7 @@ Value to_json(const ETSI_ITS_CDD_ReferencePosition_t& p, Document::AllocatorType
     json.AddMember("longitude", to_json(((p.longitude) == 1800000001) ? (p.longitude) : (double)(p.longitude) / 10000000.0, allocator), allocator);
     json.AddMember("positionConfidenceEllipse", to_json((p.positionConfidenceEllipse), allocator), allocator);
     json.AddMember("altitude", to_json((p.altitude), allocator), allocator);
-    
+
     return json;
 }
 
@@ -3363,7 +3363,7 @@ Value to_json(const ReferencePositionWithConfidence_t& p, Document::AllocatorTyp
     json.AddMember("longitude", to_json(((p.longitude) == 1800000001) ? (p.longitude) : (double)(p.longitude) / 10000000.0, allocator), allocator);
     json.AddMember("positionConfidenceEllipse", to_json((p.positionConfidenceEllipse), allocator), allocator);
     json.AddMember("altitude", to_json((p.altitude), allocator), allocator);
-    
+
     return json;
 }
 
@@ -3611,7 +3611,7 @@ Value to_json(const ETSI_ITS_CDD_Speed_t& p, Document::AllocatorType& allocator)
     Value json(kObjectType);
     json.AddMember("speedValue", to_json(((p.speedValue) == 16383) ? (p.speedValue) : (double)(p.speedValue) / 100.0, allocator), allocator);
     json.AddMember("speedConfidence", to_json(((p.speedConfidence) == 126 || (p.speedConfidence) == 127) ? (p.speedConfidence) : (double)(p.speedConfidence) / 100.0, allocator), allocator);
-    
+
     return json;
 }
 
@@ -3637,7 +3637,7 @@ Value to_json(const ETSI_ITS_CDD_StabilityChangeIndication_t& p, Document::Alloc
     Value json(kObjectType);
     json.AddMember("lossProbability", to_json((p.lossProbability), allocator), allocator);
     json.AddMember("actionDeltaTime", to_json((p.actionDeltaTime), allocator), allocator);
-    
+
     return json;
 }
 
@@ -3663,7 +3663,7 @@ Value to_json(const ETSI_ITS_CDD_SteeringWheelAngle_t& p, Document::AllocatorTyp
     Value json(kObjectType);
     json.AddMember("steeringWheelAngleValue", to_json((p.steeringWheelAngleValue), allocator), allocator);
     json.AddMember("steeringWheelAngleConfidence", to_json((p.steeringWheelAngleConfidence), allocator), allocator);
-    
+
     return json;
 }
 
@@ -3689,7 +3689,7 @@ Value to_json(const ETSI_ITS_CDD_TrafficIslandPosition_t& p, Document::Allocator
     Value json(kObjectType);
     json.AddMember("oneSide", to_json((p.oneSide), allocator), allocator);
     json.AddMember("otherSide", to_json((p.otherSide), allocator), allocator);
-    
+
     return json;
 }
 
@@ -3812,7 +3812,7 @@ Value to_json(const ETSI_ITS_CDD_VerticalAcceleration_t& p, Document::AllocatorT
     Value json(kObjectType);
     json.AddMember("verticalAccelerationValue", to_json(((p.verticalAccelerationValue) == 161) ? (p.verticalAccelerationValue) : (double)(p.verticalAccelerationValue) / 10.0, allocator), allocator);
     json.AddMember("verticalAccelerationConfidence", to_json(((p.verticalAccelerationConfidence) == 102) ? (p.verticalAccelerationConfidence) : (double)(p.verticalAccelerationConfidence) / 10.0, allocator), allocator);
-    
+
     return json;
 }
 
@@ -3836,8 +3836,8 @@ void from_json(const Value& j, ETSI_ITS_CDD_VerticalAcceleration_t& p, std::stri
 
 Value to_json(const ETSI_ITS_CDD_VehicleIdentification_t& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
-    
-    
+
+
     return json;
 }
 
@@ -3863,7 +3863,7 @@ Value to_json(const ETSI_ITS_CDD_VehicleLength_t& p, Document::AllocatorType& al
     Value json(kObjectType);
     json.AddMember("vehicleLengthValue", to_json(((p.vehicleLengthValue) == 1023) ? (p.vehicleLengthValue) : (double)(p.vehicleLengthValue) / 10.0, allocator), allocator);
     json.AddMember("vehicleLengthConfidenceIndication", to_json((p.vehicleLengthConfidenceIndication), allocator), allocator);
-    
+
     return json;
 }
 
@@ -3889,7 +3889,7 @@ Value to_json(const VehicleLengthV2_t& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("vehicleLengthValue", to_json(((p.vehicleLengthValue) == 1023) ? (p.vehicleLengthValue) : (double)(p.vehicleLengthValue) / 10.0, allocator), allocator);
     json.AddMember("trailerPresenceInformation", to_json((p.trailerPresenceInformation), allocator), allocator);
-    
+
     return json;
 }
 
@@ -3915,7 +3915,7 @@ Value to_json(const VelocityComponent_t& p, Document::AllocatorType& allocator) 
     Value json(kObjectType);
     json.AddMember("value", to_json((p.value), allocator), allocator);
     json.AddMember("confidence", to_json(((p.confidence) == 126 || (p.confidence) == 127) ? (p.confidence) : (double)(p.confidence) / 100.0, allocator), allocator);
-    
+
     return json;
 }
 
@@ -3969,7 +3969,7 @@ Value to_json(const ETSI_ITS_CDD_VruExteriorLights_t& p, Document::AllocatorType
     Value json(kObjectType);
     json.AddMember("vehicular", to_json_ITS_Container_ExteriorLights((p.vehicular), allocator), allocator);
     json.AddMember("vruSpecific", to_json_ETSI_ITS_CDD_VruSpecificExteriorLights((p.vruSpecific), allocator), allocator);
-    
+
     return json;
 }
 
@@ -4037,7 +4037,7 @@ Value to_json(const Wgs84Angle_t& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("value", to_json((p.value), allocator), allocator);
     json.AddMember("confidence", to_json((p.confidence), allocator), allocator);
-    
+
     return json;
 }
 
@@ -4063,7 +4063,7 @@ Value to_json(const ETSI_ITS_CDD_YawRate_t& p, Document::AllocatorType& allocato
     Value json(kObjectType);
     json.AddMember("yawRateValue", to_json(((p.yawRateValue) == 32767) ? (p.yawRateValue) : (double)(p.yawRateValue) / 100.0, allocator), allocator);
     json.AddMember("yawRateConfidence", to_json((p.yawRateConfidence), allocator), allocator);
-    
+
     return json;
 }
 
@@ -4090,7 +4090,7 @@ Value to_json(const ITS_Container_ItsPduHeader_t& p, Document::AllocatorType& al
     json.AddMember("protocolVersion", to_json((p.protocolVersion), allocator), allocator);
     json.AddMember("messageID", to_json((p.messageID), allocator), allocator);
     json.AddMember("stationID", to_json((p.stationID), allocator), allocator);
-    
+
     return json;
 }
 
@@ -4119,7 +4119,7 @@ Value to_json(const ITS_Container_ReferencePosition_t& p, Document::AllocatorTyp
     json.AddMember("longitude", to_json(((p.longitude) == 1800000001) ? (p.longitude) : (double)(p.longitude) / 10000000.0, allocator), allocator);
     json.AddMember("positionConfidenceEllipse", to_json((p.positionConfidenceEllipse), allocator), allocator);
     json.AddMember("altitude", to_json((p.altitude), allocator), allocator);
-    
+
     return json;
 }
 
@@ -4148,7 +4148,7 @@ Value to_json(const ITS_Container_DeltaReferencePosition_t& p, Document::Allocat
     json.AddMember("deltaLatitude", to_json((p.deltaLatitude), allocator), allocator);
     json.AddMember("deltaLongitude", to_json((p.deltaLongitude), allocator), allocator);
     json.AddMember("deltaAltitude", to_json((p.deltaAltitude), allocator), allocator);
-    
+
     return json;
 }
 
@@ -4175,7 +4175,7 @@ Value to_json(const ITS_Container_Altitude_t& p, Document::AllocatorType& alloca
     Value json(kObjectType);
     json.AddMember("altitudeValue", to_json(((p.altitudeValue) == 800001) ? (p.altitudeValue) : (double)(p.altitudeValue) / 100.0, allocator), allocator);
     json.AddMember("altitudeConfidence", to_json((p.altitudeConfidence), allocator), allocator);
-    
+
     return json;
 }
 
@@ -4202,7 +4202,7 @@ Value to_json(const ITS_Container_PosConfidenceEllipse_t& p, Document::Allocator
     json.AddMember("semiMajorConfidence", to_json((p.semiMajorConfidence), allocator), allocator);
     json.AddMember("semiMinorConfidence", to_json((p.semiMinorConfidence), allocator), allocator);
     json.AddMember("semiMajorOrientation", to_json(((p.semiMajorOrientation) == 3601) ? (p.semiMajorOrientation) : (double)(p.semiMajorOrientation) / 10.0, allocator), allocator);
-    
+
     return json;
 }
 
@@ -4255,7 +4255,7 @@ Value to_json(const ITS_Container_PtActivation_t& p, Document::AllocatorType& al
     Value json(kObjectType);
     json.AddMember("ptActivationType", to_json((p.ptActivationType), allocator), allocator);
     json.AddMember("ptActivationData", to_json((p.ptActivationData), allocator), allocator);
-    
+
     return json;
 }
 
@@ -4334,7 +4334,7 @@ Value to_json(const ITS_Container_CauseCode_t& p, Document::AllocatorType& alloc
     Value json(kObjectType);
     json.AddMember("causeCode", to_json((p.causeCode), allocator), allocator);
     json.AddMember("subCauseCode", to_json((p.subCauseCode), allocator), allocator);
-    
+
     return json;
 }
 
@@ -4360,7 +4360,7 @@ Value to_json(const ITS_Container_Curvature_t& p, Document::AllocatorType& alloc
     Value json(kObjectType);
     json.AddMember("curvatureValue", to_json((p.curvatureValue), allocator), allocator);
     json.AddMember("curvatureConfidence", to_json((p.curvatureConfidence), allocator), allocator);
-    
+
     return json;
 }
 
@@ -4386,7 +4386,7 @@ Value to_json(const ITS_Container_Heading_t& p, Document::AllocatorType& allocat
     Value json(kObjectType);
     json.AddMember("headingValue", to_json(((p.headingValue) == 3601) ? (p.headingValue) : (double)(p.headingValue) / 10.0, allocator), allocator);
     json.AddMember("headingConfidence", to_json(((p.headingConfidence) == 126 || (p.headingConfidence) == 127) ? (p.headingConfidence) : (double)(p.headingConfidence) / 10.0, allocator), allocator);
-    
+
     return json;
 }
 
@@ -4410,7 +4410,7 @@ void from_json(const Value& j, ITS_Container_Heading_t& p, std::string field) {
 
 Value to_json(const ITS_Container_ClosedLanes_t& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
-    
+
     if (p.innerhardShoulderStatus != 0) json.AddMember("innerhardShoulderStatus", to_json(*(p.innerhardShoulderStatus), allocator), allocator);
     if (p.outerhardShoulderStatus != 0) json.AddMember("outerhardShoulderStatus", to_json(*(p.outerhardShoulderStatus), allocator), allocator);
     if (p.drivingLaneStatus != 0) json.AddMember("drivingLaneStatus", to_json_ITS_Container_DrivingLaneStatus(*(p.drivingLaneStatus), allocator), allocator);
@@ -4441,20 +4441,20 @@ void from_json(const Value& j, ITS_Container_ClosedLanes_t& p, std::string field
 
 Value to_json_ITS_Container_DrivingLaneStatus(const ITS_Container_DrivingLaneStatus_t p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
-    
+
     return json;
 }
 
 void from_json_ITS_Container_DrivingLaneStatus(const Value& j, ITS_Container_DrivingLaneStatus_t& p, std::string field) {
     try {
         ITS_Container_DrivingLaneStatus_t* p_tmp = vanetza::asn1::allocate<ITS_Container_DrivingLaneStatus_t>();
-        
-        
+
+
         p_tmp->size = (0 / 8) + 1;
         p_tmp->bits_unused = (0 % 8) != 0 ? 8 - (0 % 8) : 0;
         p_tmp->buf = (uint8_t *) calloc(1, sizeof(uint8_t) * p_tmp->size);
         *(p_tmp->buf + (sizeof(uint8_t) * 0)) = (uint8_t) 0;
-        
+
         p = *p_tmp;
         delete p_tmp;
     } catch(VanetzaJSONException& ex) {
@@ -4472,7 +4472,7 @@ Value to_json(const ITS_Container_Speed_t& p, Document::AllocatorType& allocator
     Value json(kObjectType);
     json.AddMember("speedValue", to_json(((p.speedValue) == 16383) ? (p.speedValue) : (double)(p.speedValue) / 100.0, allocator), allocator);
     json.AddMember("speedConfidence", to_json(((p.speedConfidence) == 126 || (p.speedConfidence) == 127) ? (p.speedConfidence) : (double)(p.speedConfidence) / 100.0, allocator), allocator);
-    
+
     return json;
 }
 
@@ -4498,7 +4498,7 @@ Value to_json(const ITS_Container_LongitudinalAcceleration_t& p, Document::Alloc
     Value json(kObjectType);
     json.AddMember("longitudinalAccelerationValue", to_json(((p.longitudinalAccelerationValue) == 161) ? (p.longitudinalAccelerationValue) : (double)(p.longitudinalAccelerationValue) / 10.0, allocator), allocator);
     json.AddMember("longitudinalAccelerationConfidence", to_json(((p.longitudinalAccelerationConfidence) == 102) ? (p.longitudinalAccelerationConfidence) : (double)(p.longitudinalAccelerationConfidence) / 10.0, allocator), allocator);
-    
+
     return json;
 }
 
@@ -4524,7 +4524,7 @@ Value to_json(const ITS_Container_LateralAcceleration_t& p, Document::AllocatorT
     Value json(kObjectType);
     json.AddMember("lateralAccelerationValue", to_json(((p.lateralAccelerationValue) == 161) ? (p.lateralAccelerationValue) : (double)(p.lateralAccelerationValue) / 10.0, allocator), allocator);
     json.AddMember("lateralAccelerationConfidence", to_json(((p.lateralAccelerationConfidence) == 102) ? (p.lateralAccelerationConfidence) : (double)(p.lateralAccelerationConfidence) / 10.0, allocator), allocator);
-    
+
     return json;
 }
 
@@ -4550,7 +4550,7 @@ Value to_json(const ITS_Container_VerticalAcceleration_t& p, Document::Allocator
     Value json(kObjectType);
     json.AddMember("verticalAccelerationValue", to_json(((p.verticalAccelerationValue) == 161) ? (p.verticalAccelerationValue) : (double)(p.verticalAccelerationValue) / 10.0, allocator), allocator);
     json.AddMember("verticalAccelerationConfidence", to_json(((p.verticalAccelerationConfidence) == 102) ? (p.verticalAccelerationConfidence) : (double)(p.verticalAccelerationConfidence) / 10.0, allocator), allocator);
-    
+
     return json;
 }
 
@@ -4851,8 +4851,8 @@ void from_json_ITS_Container_PositionOfOccupants(const Value& j, ITS_Container_P
 
 Value to_json(const ITS_Container_VehicleIdentification_t& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
-    
-    
+
+
     return json;
 }
 
@@ -4931,7 +4931,7 @@ Value to_json(const ITS_Container_VehicleLength_t& p, Document::AllocatorType& a
     Value json(kObjectType);
     json.AddMember("vehicleLengthValue", to_json(((p.vehicleLengthValue) == 1023) ? (p.vehicleLengthValue) : (double)(p.vehicleLengthValue) / 10.0, allocator), allocator);
     json.AddMember("vehicleLengthConfidenceIndication", to_json((p.vehicleLengthConfidenceIndication), allocator), allocator);
-    
+
     return json;
 }
 
@@ -5022,7 +5022,7 @@ Value to_json(const ITS_Container_SteeringWheelAngle_t& p, Document::AllocatorTy
     Value json(kObjectType);
     json.AddMember("steeringWheelAngleValue", to_json((p.steeringWheelAngleValue), allocator), allocator);
     json.AddMember("steeringWheelAngleConfidence", to_json((p.steeringWheelAngleConfidence), allocator), allocator);
-    
+
     return json;
 }
 
@@ -5048,7 +5048,7 @@ Value to_json(const ITS_Container_YawRate_t& p, Document::AllocatorType& allocat
     Value json(kObjectType);
     json.AddMember("yawRateValue", to_json(((p.yawRateValue) == 32767) ? (p.yawRateValue) : (double)(p.yawRateValue) / 100.0, allocator), allocator);
     json.AddMember("yawRateConfidence", to_json((p.yawRateConfidence), allocator), allocator);
-    
+
     return json;
 }
 
@@ -5074,7 +5074,7 @@ Value to_json(const ITS_Container_ActionID_t& p, Document::AllocatorType& alloca
     Value json(kObjectType);
     json.AddMember("originatingStationID", to_json((p.originatingStationID), allocator), allocator);
     json.AddMember("sequenceNumber", to_json((p.sequenceNumber), allocator), allocator);
-    
+
     return json;
 }
 
@@ -5412,7 +5412,7 @@ void from_json(const Value& j, ITS_Container_DigitalMap_t& p, std::string field)
 
 Value to_json(const LaneAttributes_addGrpC& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
-    
+
     if (p.maxVehicleHeight != 0) json.AddMember("maxVehicleHeight", to_json(*(p.maxVehicleHeight), allocator), allocator);
     if (p.maxVehicleWeight != 0) json.AddMember("maxVehicleWeight", to_json(*(p.maxVehicleWeight), allocator), allocator);
     return json;
@@ -5440,7 +5440,7 @@ void from_json(const Value& j, LaneAttributes_addGrpC& p, std::string field) {
 
 Value to_json(const MovementEvent_addGrpC& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
-    
+
     if (p.stateChangeReason != 0) json.AddMember("stateChangeReason", to_json(*(p.stateChangeReason), allocator), allocator);
     return json;
 }
@@ -5466,7 +5466,7 @@ void from_json(const Value& j, MovementEvent_addGrpC& p, std::string field) {
 Value to_json(const Position3D_addGrpC& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("altitude", to_json((p.altitude), allocator), allocator);
-    
+
     return json;
 }
 
@@ -5489,7 +5489,7 @@ void from_json(const Value& j, Position3D_addGrpC& p, std::string field) {
 
 Value to_json(const RestrictionUserType_addGrpC& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
-    
+
     if (p.emission != 0) json.AddMember("emission", to_json(*(p.emission), allocator), allocator);
     if (p.fuel != 0) json.AddMember("fuel", to_json(*(p.fuel), allocator), allocator);
     return json;
@@ -5517,7 +5517,7 @@ void from_json(const Value& j, RestrictionUserType_addGrpC& p, std::string field
 
 Value to_json(const RequestorDescription_addGrpC& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
-    
+
     if (p.fuel != 0) json.AddMember("fuel", to_json(*(p.fuel), allocator), allocator);
     if (p.batteryStatus != 0) json.AddMember("batteryStatus", to_json(*(p.batteryStatus), allocator), allocator);
     return json;
@@ -5545,7 +5545,7 @@ void from_json(const Value& j, RequestorDescription_addGrpC& p, std::string fiel
 
 Value to_json(const SignalStatusPackage_addGrpC& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
-    
+
     if (p.synchToSchedule != 0) json.AddMember("synchToSchedule", to_json(*(p.synchToSchedule), allocator), allocator);
     if (p.rejectedReason != 0) json.AddMember("rejectedReason", to_json(*(p.rejectedReason), allocator), allocator);
     return json;
@@ -5640,7 +5640,7 @@ Value to_json(const PrioritizationResponse& p, Document::AllocatorType& allocato
     json.AddMember("stationID", to_json((p.stationID), allocator), allocator);
     json.AddMember("priorState", to_json((p.priorState), allocator), allocator);
     json.AddMember("signalGroup", to_json((p.signalGroup), allocator), allocator);
-    
+
     return json;
 }
 
@@ -5768,7 +5768,7 @@ Value to_json(const AntennaOffsetSet& p, Document::AllocatorType& allocator) {
     json.AddMember("antOffsetX", to_json((p.antOffsetX), allocator), allocator);
     json.AddMember("antOffsetY", to_json((p.antOffsetY), allocator), allocator);
     json.AddMember("antOffsetZ", to_json((p.antOffsetZ), allocator), allocator);
-    
+
     return json;
 }
 
@@ -5930,7 +5930,7 @@ void from_json(const Value& j, ConnectionManeuverAssist_t& p, std::string field)
 
 Value to_json(const DataParameters_t& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
-    
+
     if (p.processMethod != 0) json.AddMember("processMethod", to_json(*(p.processMethod), allocator), allocator);
     if (p.processAgency != 0) json.AddMember("processAgency", to_json(*(p.processAgency), allocator), allocator);
     if (p.lastCheckedDate != 0) json.AddMember("lastCheckedDate", to_json(*(p.lastCheckedDate), allocator), allocator);
@@ -5964,7 +5964,7 @@ void from_json(const Value& j, DataParameters_t& p, std::string field) {
 
 Value to_json(const DDateTime& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
-    
+
     if (p.year != 0) json.AddMember("year", to_json(*(p.year), allocator), allocator);
     if (p.month != 0) json.AddMember("month", to_json(*(p.month), allocator), allocator);
     if (p.day != 0) json.AddMember("day", to_json(*(p.day), allocator), allocator);
@@ -6234,7 +6234,7 @@ Value to_json(const Node_LLmD_64b& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("lon", to_json(((p.lon) == 1800000001) ? (p.lon) : (double)(p.lon) / 10000000.0, allocator), allocator);
     json.AddMember("lat", to_json(((p.lat) == 900000001) ? (p.lat) : (double)(p.lat) / 10000000.0, allocator), allocator);
-    
+
     return json;
 }
 
@@ -6260,7 +6260,7 @@ Value to_json(const Node_XY_20b& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("x", to_json((p.x), allocator), allocator);
     json.AddMember("y", to_json((p.y), allocator), allocator);
-    
+
     return json;
 }
 
@@ -6286,7 +6286,7 @@ Value to_json(const Node_XY_22b& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("x", to_json((p.x), allocator), allocator);
     json.AddMember("y", to_json((p.y), allocator), allocator);
-    
+
     return json;
 }
 
@@ -6312,7 +6312,7 @@ Value to_json(const Node_XY_24b& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("x", to_json((p.x), allocator), allocator);
     json.AddMember("y", to_json((p.y), allocator), allocator);
-    
+
     return json;
 }
 
@@ -6338,7 +6338,7 @@ Value to_json(const Node_XY_26b& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("x", to_json((p.x), allocator), allocator);
     json.AddMember("y", to_json((p.y), allocator), allocator);
-    
+
     return json;
 }
 
@@ -6364,7 +6364,7 @@ Value to_json(const Node_XY_28b& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("x", to_json((p.x), allocator), allocator);
     json.AddMember("y", to_json((p.y), allocator), allocator);
-    
+
     return json;
 }
 
@@ -6390,7 +6390,7 @@ Value to_json(const Node_XY_32b& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("x", to_json((p.x), allocator), allocator);
     json.AddMember("y", to_json((p.y), allocator), allocator);
-    
+
     return json;
 }
 
@@ -6506,7 +6506,7 @@ Value to_json(const PositionalAccuracy& p, Document::AllocatorType& allocator) {
     json.AddMember("semiMajor", to_json((p.semiMajor), allocator), allocator);
     json.AddMember("semiMinor", to_json((p.semiMinor), allocator), allocator);
     json.AddMember("orientation", to_json((p.orientation), allocator), allocator);
-    
+
     return json;
 }
 
@@ -6533,7 +6533,7 @@ Value to_json(const PositionConfidenceSet& p, Document::AllocatorType& allocator
     Value json(kObjectType);
     json.AddMember("pos", to_json((p.pos), allocator), allocator);
     json.AddMember("elevation", to_json((p.elevation), allocator), allocator);
-    
+
     return json;
 }
 
@@ -6588,7 +6588,7 @@ Value to_json(const RegulatorySpeedLimit& p, Document::AllocatorType& allocator)
     Value json(kObjectType);
     json.AddMember("type", to_json((p.type), allocator), allocator);
     json.AddMember("speed", to_json((p.speed), allocator), allocator);
-    
+
     return json;
 }
 
@@ -6763,15 +6763,15 @@ void from_json(const Value& j, SegmentAttributeXYList& p, std::string field) {
 
 Value to_json(const SignalControlZone& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
-    
-    
+
+
     return json;
 }
 
 void from_json(const Value& j, SignalControlZone& p, std::string field) {
     try {
         p._asn_ctx.ptr = nullptr;
-        
+
     } catch(VanetzaJSONException& ex) {
         ex.addContext(field);
         ex.rethrow();
@@ -6856,7 +6856,7 @@ Value to_json(const SpeedandHeadingIsoandThrottleConfidence& p, Document::Alloca
     json.AddMember("heading", to_json((p.heading), allocator), allocator);
     json.AddMember("speed", to_json((p.speed), allocator), allocator);
     json.AddMember("throttle", to_json((p.throttle), allocator), allocator);
-    
+
     return json;
 }
 
@@ -6953,7 +6953,7 @@ Value to_json(const TransmissionAndSpeed_t& p, Document::AllocatorType& allocato
     Value json(kObjectType);
     json.AddMember("transmisson", to_json((p.transmisson), allocator), allocator);
     json.AddMember("speed", to_json((p.speed), allocator), allocator);
-    
+
     return json;
 }
 
@@ -7728,7 +7728,7 @@ void from_json_TransitVehicleStatus(const Value& j, TransitVehicleStatus_t& p, s
 Value to_json(const CS5& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("vin", to_json((p.vin), allocator), allocator);
-    
+
     return json;
 }
 
@@ -7736,7 +7736,7 @@ void from_json(const Value& j, CS5& p, std::string field) {
     try {
         p._asn_ctx.ptr = nullptr;
         from_json(j["vin"], (p.vin), "vin");
-        
+
     } catch(VanetzaJSONException& ex) {
         ex.addContext(field);
         ex.rethrow();
@@ -7760,7 +7760,7 @@ Value to_json(const FreightContainerData_t& p, Document::AllocatorType& allocato
     json.AddMember("containerTypeCode", to_json((p.containerTypeCode), allocator), allocator);
     json.AddMember("maximumGrossMass", to_json((p.maximumGrossMass), allocator), allocator);
     json.AddMember("tareMass", to_json((p.tareMass), allocator), allocator);
-    
+
     return json;
 }
 
@@ -7775,8 +7775,8 @@ void from_json(const Value& j, FreightContainerData_t& p, std::string field) {
         from_json(j["containerTypeCode"], (p.containerTypeCode), "containerTypeCode");
         from_json(j["maximumGrossMass"], (p.maximumGrossMass), "maximumGrossMass");
         from_json(j["tareMass"], (p.tareMass), "tareMass");
-        
-        
+
+
     } catch(VanetzaJSONException& ex) {
         ex.addContext(field);
         ex.rethrow();
@@ -7792,20 +7792,20 @@ void from_json(const Value& j, FreightContainerData_t& p, std::string field) {
 
 Value to_json_AVIAEINumberingAndDataStructures_CountryCode(const AVIAEINumberingAndDataStructures_CountryCode_t p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
-    
+
     return json;
 }
 
 void from_json_AVIAEINumberingAndDataStructures_CountryCode(const Value& j, AVIAEINumberingAndDataStructures_CountryCode_t& p, std::string field) {
     try {
         AVIAEINumberingAndDataStructures_CountryCode_t* p_tmp = vanetza::asn1::allocate<AVIAEINumberingAndDataStructures_CountryCode_t>();
-        
-        
+
+
         p_tmp->size = (0 / 8) + 1;
         p_tmp->bits_unused = (0 % 8) != 0 ? 8 - (0 % 8) : 0;
         p_tmp->buf = (uint8_t *) calloc(1, sizeof(uint8_t) * p_tmp->size);
         *(p_tmp->buf + (sizeof(uint8_t) * 0)) = (uint8_t) 0;
-        
+
         p = *p_tmp;
         delete p_tmp;
     } catch(VanetzaJSONException& ex) {
@@ -7821,20 +7821,20 @@ void from_json_AVIAEINumberingAndDataStructures_CountryCode(const Value& j, AVIA
 
 Value to_json_ServiceNumber(const ServiceNumber_t p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
-    
+
     return json;
 }
 
 void from_json_ServiceNumber(const Value& j, ServiceNumber_t& p, std::string field) {
     try {
         ServiceNumber_t* p_tmp = vanetza::asn1::allocate<ServiceNumber_t>();
-        
-        
+
+
         p_tmp->size = (0 / 8) + 1;
         p_tmp->bits_unused = (0 % 8) != 0 ? 8 - (0 % 8) : 0;
         p_tmp->buf = (uint8_t *) calloc(1, sizeof(uint8_t) * p_tmp->size);
         *(p_tmp->buf + (sizeof(uint8_t) * 0)) = (uint8_t) 0;
-        
+
         p = *p_tmp;
         delete p_tmp;
     } catch(VanetzaJSONException& ex) {
@@ -8005,7 +8005,7 @@ Value to_json(const GddStructure::GddStructure__pictogramCode::GddStructure__pic
     Value json(kObjectType);
     json.AddMember("nature", to_json((p.nature), allocator), allocator);
     json.AddMember("serialNumber", to_json((p.serialNumber), allocator), allocator);
-    
+
     return json;
 }
 
@@ -8059,7 +8059,7 @@ Value to_json(const InternationalSign_applicablePeriod::InternationalSign_applic
     Value json(kObjectType);
     json.AddMember("yearRangeStartYear", to_json((p.yearRangeStartYear), allocator), allocator);
     json.AddMember("yearRangeEndYear", to_json((p.yearRangeEndYear), allocator), allocator);
-    
+
     return json;
 }
 
@@ -8297,7 +8297,7 @@ Value to_json(const Distance& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("value", to_json((p.value), allocator), allocator);
     json.AddMember("unit", to_json((p.unit), allocator), allocator);
-    
+
     return json;
 }
 
@@ -8323,7 +8323,7 @@ Value to_json(const DistanceOrDuration& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("value", to_json((p.value), allocator), allocator);
     json.AddMember("unit", to_json((p.unit), allocator), allocator);
-    
+
     return json;
 }
 
@@ -8349,7 +8349,7 @@ Value to_json(const HoursMinutes& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("hours", to_json((p.hours), allocator), allocator);
     json.AddMember("mins", to_json((p.mins), allocator), allocator);
-    
+
     return json;
 }
 
@@ -8375,7 +8375,7 @@ Value to_json(const MonthDay& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("month", to_json((p.month), allocator), allocator);
     json.AddMember("day", to_json((p.day), allocator), allocator);
-    
+
     return json;
 }
 
@@ -8442,7 +8442,7 @@ Value to_json(const Weight& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("value", to_json((p.value), allocator), allocator);
     json.AddMember("unit", to_json((p.unit), allocator), allocator);
-    
+
     return json;
 }
 
@@ -8471,7 +8471,7 @@ Value to_json(const AxleWeightLimits_t& p, Document::AllocatorType& allocator) {
     json.AddMember("maxLadenweightOnAxle3", to_json((p.maxLadenweightOnAxle3), allocator), allocator);
     json.AddMember("maxLadenweightOnAxle4", to_json((p.maxLadenweightOnAxle4), allocator), allocator);
     json.AddMember("maxLadenweightOnAxle5", to_json((p.maxLadenweightOnAxle5), allocator), allocator);
-    
+
     return json;
 }
 
@@ -8500,7 +8500,7 @@ Value to_json(const AddRq_t& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("attributeId", to_json((p.attributeId), allocator), allocator);
     json.AddMember("value", to_json((p.value), allocator), allocator);
-    
+
     return json;
 }
 
@@ -8526,7 +8526,7 @@ Value to_json(const ChannelRq_t& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("channelId", to_json((p.channelId), allocator), allocator);
     json.AddMember("apdu", to_json((p.apdu), allocator), allocator);
-    
+
     return json;
 }
 
@@ -8552,7 +8552,7 @@ Value to_json(const ChannelRs_t& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("channelId", to_json((p.channelId), allocator), allocator);
     json.AddMember("apdu", to_json((p.apdu), allocator), allocator);
-    
+
     return json;
 }
 
@@ -8577,7 +8577,7 @@ void from_json(const Value& j, ChannelRs_t& p, std::string field) {
 Value to_json(const CopyRq_t& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("destinationEID", to_json((p.destinationEID), allocator), allocator);
-    
+
     return json;
 }
 
@@ -8585,7 +8585,7 @@ void from_json(const Value& j, CopyRq_t& p, std::string field) {
     try {
         p._asn_ctx.ptr = nullptr;
         from_json(j["destinationEID"], (p.destinationEID), "destinationEID");
-        
+
     } catch(VanetzaJSONException& ex) {
         ex.addContext(field);
         ex.rethrow();
@@ -8603,7 +8603,7 @@ Value to_json(const GetInstanceRq_t& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("posOfFirstInstance", to_json((p.posOfFirstInstance), allocator), allocator);
     json.AddMember("posOfLastInstance", to_json((p.posOfLastInstance), allocator), allocator);
-    
+
     return json;
 }
 
@@ -8612,7 +8612,7 @@ void from_json(const Value& j, GetInstanceRq_t& p, std::string field) {
         p._asn_ctx.ptr = nullptr;
         from_json(j["posOfFirstInstance"], (p.posOfFirstInstance), "posOfFirstInstance");
         from_json(j["posOfLastInstance"], (p.posOfLastInstance), "posOfLastInstance");
-        
+
     } catch(VanetzaJSONException& ex) {
         ex.addContext(field);
         ex.rethrow();
@@ -8630,7 +8630,7 @@ Value to_json(const SubRq_t& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("attributeId", to_json((p.attributeId), allocator), allocator);
     json.AddMember("value", to_json((p.value), allocator), allocator);
-    
+
     return json;
 }
 
@@ -8657,7 +8657,7 @@ Value to_json(const DateCompact_t& p, Document::AllocatorType& allocator) {
     json.AddMember("year", to_json((p.year), allocator), allocator);
     json.AddMember("month", to_json((p.month), allocator), allocator);
     json.AddMember("day", to_json((p.day), allocator), allocator);
-    
+
     return json;
 }
 
@@ -8684,7 +8684,7 @@ Value to_json(const DieselEmissionValues::DieselEmissionValues__particulate& p, 
     Value json(kObjectType);
     json.AddMember("unitType", to_json((p.unitType), allocator), allocator);
     json.AddMember("value", to_json((p.value), allocator), allocator);
-    
+
     return json;
 }
 
@@ -8710,7 +8710,7 @@ Value to_json(const DieselEmissionValues_t& p, Document::AllocatorType& allocato
     Value json(kObjectType);
     json.AddMember("particulate", to_json((p.particulate), allocator), allocator);
     json.AddMember("absorptionCoeff", to_json((p.absorptionCoeff), allocator), allocator);
-    
+
     return json;
 }
 
@@ -8736,7 +8736,7 @@ Value to_json(const EfcDsrcApplication_DriverCharacteristics_t& p, Document::All
     Value json(kObjectType);
     json.AddMember("driverClass", to_json((p.driverClass), allocator), allocator);
     json.AddMember("tripPurpose", to_json((p.tripPurpose), allocator), allocator);
-    
+
     return json;
 }
 
@@ -8763,7 +8763,7 @@ Value to_json(const EFC_ContextMark_t& p, Document::AllocatorType& allocator) {
     json.AddMember("contractProvider", to_json((p.contractProvider), allocator), allocator);
     json.AddMember("typeOfContract", to_json((p.typeOfContract), allocator), allocator);
     json.AddMember("contextVersion", to_json((p.contextVersion), allocator), allocator);
-    
+
     return json;
 }
 
@@ -8790,7 +8790,7 @@ Value to_json(const EnvironmentalCharacteristics_t& p, Document::AllocatorType& 
     Value json(kObjectType);
     json.AddMember("euroValue", to_json((p.euroValue), allocator), allocator);
     json.AddMember("copValue", to_json((p.copValue), allocator), allocator);
-    
+
     return json;
 }
 
@@ -8816,7 +8816,7 @@ Value to_json(const Engine_t& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("engineCapacity", to_json((p.engineCapacity), allocator), allocator);
     json.AddMember("enginePower", to_json((p.enginePower), allocator), allocator);
-    
+
     return json;
 }
 
@@ -8840,20 +8840,20 @@ void from_json(const Value& j, Engine_t& p, std::string field) {
 
 Value to_json_EquipmentStatus(const EquipmentStatus_t p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
-    
+
     return json;
 }
 
 void from_json_EquipmentStatus(const Value& j, EquipmentStatus_t& p, std::string field) {
     try {
         EquipmentStatus_t* p_tmp = vanetza::asn1::allocate<EquipmentStatus_t>();
-        
-        
+
+
         p_tmp->size = (0 / 8) + 1;
         p_tmp->bits_unused = (0 % 8) != 0 ? 8 - (0 % 8) : 0;
         p_tmp->buf = (uint8_t *) calloc(1, sizeof(uint8_t) * p_tmp->size);
         *(p_tmp->buf + (sizeof(uint8_t) * 0)) = (uint8_t) 0;
-        
+
         p = *p_tmp;
         delete p_tmp;
     } catch(VanetzaJSONException& ex) {
@@ -8874,7 +8874,7 @@ Value to_json(const ExhaustEmissionValues_t& p, Document::AllocatorType& allocat
     json.AddMember("emissionHC", to_json((p.emissionHC), allocator), allocator);
     json.AddMember("emissionNOX", to_json((p.emissionNOX), allocator), allocator);
     json.AddMember("emissionHCNOX", to_json((p.emissionHCNOX), allocator), allocator);
-    
+
     return json;
 }
 
@@ -8904,7 +8904,7 @@ Value to_json(const LPN_t& p, Document::AllocatorType& allocator) {
     json.AddMember("countryCode", to_json_AVIAEINumberingAndDataStructures_CountryCode((p.countryCode), allocator), allocator);
     json.AddMember("alphabetIndicator", to_json((p.alphabetIndicator), allocator), allocator);
     json.AddMember("licencePlateNumber", to_json((p.licencePlateNumber), allocator), allocator);
-    
+
     return json;
 }
 
@@ -8931,7 +8931,7 @@ Value to_json(const PassengerCapacity_t& p, Document::AllocatorType& allocator) 
     Value json(kObjectType);
     json.AddMember("numberOfSeats", to_json((p.numberOfSeats), allocator), allocator);
     json.AddMember("numberOfStandingPlaces", to_json((p.numberOfStandingPlaces), allocator), allocator);
-    
+
     return json;
 }
 
@@ -8989,7 +8989,7 @@ Value to_json(const EfcDsrcApplication_Provider_t& p, Document::AllocatorType& a
     Value json(kObjectType);
     json.AddMember("countryCode", to_json_AVIAEINumberingAndDataStructures_CountryCode((p.countryCode), allocator), allocator);
     json.AddMember("providerIdentifier", to_json((p.providerIdentifier), allocator), allocator);
-    
+
     return json;
 }
 
@@ -9015,7 +9015,7 @@ Value to_json(const PurseBalance_t& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("purseValue", to_json((p.purseValue), allocator), allocator);
     json.AddMember("purseUnit", to_json((p.purseUnit), allocator), allocator);
-    
+
     return json;
 }
 
@@ -9042,7 +9042,7 @@ Value to_json(const ReceiptContract_t& p, Document::AllocatorType& allocator) {
     json.AddMember("sessionContractProvider", to_json((p.sessionContractProvider), allocator), allocator);
     json.AddMember("sessionTypeOfContract", to_json((p.sessionTypeOfContract), allocator), allocator);
     json.AddMember("sessionContractSerialNumber", to_json((p.sessionContractSerialNumber), allocator), allocator);
-    
+
     return json;
 }
 
@@ -9069,7 +9069,7 @@ Value to_json(const SessionClass_t& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("sessionTariffClass", to_json((p.sessionTariffClass), allocator), allocator);
     json.AddMember("sessionClaimedClass", to_json((p.sessionClaimedClass), allocator), allocator);
-    
+
     return json;
 }
 
@@ -9095,7 +9095,7 @@ Value to_json(const SessionLocation_t& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("ascendingKilometrage", to_json((p.ascendingKilometrage), allocator), allocator);
     json.AddMember("laneCodeNumber", to_json((p.laneCodeNumber), allocator), allocator);
-    
+
     return json;
 }
 
@@ -9122,7 +9122,7 @@ Value to_json(const DateAndTime::DateAndTime__timeCompact& p, Document::Allocato
     json.AddMember("hours", to_json((p.hours), allocator), allocator);
     json.AddMember("mins", to_json((p.mins), allocator), allocator);
     json.AddMember("double-secs", to_json((p.double_secs), allocator), allocator);
-    
+
     return json;
 }
 
@@ -9149,7 +9149,7 @@ Value to_json(const DateAndTime_t& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("timeDate", to_json((p.timeDate), allocator), allocator);
     json.AddMember("timeCompact", to_json((p.timeCompact), allocator), allocator);
-    
+
     return json;
 }
 
@@ -9175,7 +9175,7 @@ Value to_json(const SoundLevel_t& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("soundstationary", to_json((p.soundstationary), allocator), allocator);
     json.AddMember("sounddriveby", to_json((p.sounddriveby), allocator), allocator);
-    
+
     return json;
 }
 
@@ -9201,7 +9201,7 @@ Value to_json(const TrailerDetails_t& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("trailerType", to_json((p.trailerType), allocator), allocator);
     json.AddMember("trailerAxles", to_json((p.trailerAxles), allocator), allocator);
-    
+
     return json;
 }
 
@@ -9227,7 +9227,7 @@ Value to_json(const ValidityOfContract_t& p, Document::AllocatorType& allocator)
     Value json(kObjectType);
     json.AddMember("issuerRestrictions", to_json((p.issuerRestrictions), allocator), allocator);
     json.AddMember("contractExpiryDate", to_json((p.contractExpiryDate), allocator), allocator);
-    
+
     return json;
 }
 
@@ -9253,7 +9253,7 @@ Value to_json(const VehicleAxles::VehicleAxles__vehicleAxlesNumber::VehicleAxles
     Value json(kObjectType);
     json.AddMember("trailerAxles", to_json((p.trailerAxles), allocator), allocator);
     json.AddMember("tractorAxles", to_json((p.tractorAxles), allocator), allocator);
-    
+
     return json;
 }
 
@@ -9279,7 +9279,7 @@ Value to_json(const VehicleAxles::VehicleAxles__vehicleAxlesNumber& p, Document:
     Value json(kObjectType);
     json.AddMember("tyreType", to_json((p.tyreType), allocator), allocator);
     json.AddMember("numberOfAxles", to_json((p.numberOfAxles), allocator), allocator);
-    
+
     return json;
 }
 
@@ -9305,7 +9305,7 @@ Value to_json(const VehicleAxles_t& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("vehicleFirstAxleHeight", to_json((p.vehicleFirstAxleHeight), allocator), allocator);
     json.AddMember("vehicleAxlesNumber", to_json((p.vehicleAxlesNumber), allocator), allocator);
-    
+
     return json;
 }
 
@@ -9332,7 +9332,7 @@ Value to_json(const VehicleDimensions_t& p, Document::AllocatorType& allocator) 
     json.AddMember("vehicleLengthOverall", to_json((p.vehicleLengthOverall), allocator), allocator);
     json.AddMember("vehicleHeigthOverall", to_json((p.vehicleHeigthOverall), allocator), allocator);
     json.AddMember("vehicleWidthOverall", to_json((p.vehicleWidthOverall), allocator), allocator);
-    
+
     return json;
 }
 
@@ -9361,7 +9361,7 @@ Value to_json(const VehicleSpecificCharacteristics_t& p, Document::AllocatorType
     json.AddMember("engineCharacteristics", to_json((p.engineCharacteristics), allocator), allocator);
     json.AddMember("descriptiveCharacteristics", to_json((p.descriptiveCharacteristics), allocator), allocator);
     json.AddMember("futureCharacteristics", to_json((p.futureCharacteristics), allocator), allocator);
-    
+
     return json;
 }
 
@@ -9390,7 +9390,7 @@ Value to_json(const VehicleWeightLimits_t& p, Document::AllocatorType& allocator
     json.AddMember("vehicleMaxLadenWeight", to_json((p.vehicleMaxLadenWeight), allocator), allocator);
     json.AddMember("vehicleTrainMaximumWeight", to_json((p.vehicleTrainMaximumWeight), allocator), allocator);
     json.AddMember("vehicleWeightUnladen", to_json((p.vehicleWeightUnladen), allocator), allocator);
-    
+
     return json;
 }
 
@@ -9747,7 +9747,7 @@ Value to_json(const AbsolutePosition& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("latitude", to_json(((p.latitude) == 900000001) ? (p.latitude) : (double)(p.latitude) / 10000000.0, allocator), allocator);
     json.AddMember("longitude", to_json(((p.longitude) == 1800000001) ? (p.longitude) : (double)(p.longitude) / 10000000.0, allocator), allocator);
-    
+
     return json;
 }
 
@@ -9774,7 +9774,7 @@ Value to_json(const AbsolutePositionWAltitude& p, Document::AllocatorType& alloc
     json.AddMember("latitude", to_json(((p.latitude) == 900000001) ? (p.latitude) : (double)(p.latitude) / 10000000.0, allocator), allocator);
     json.AddMember("longitude", to_json(((p.longitude) == 1800000001) ? (p.longitude) : (double)(p.longitude) / 10000000.0, allocator), allocator);
     json.AddMember("altitude", to_json((p.altitude), allocator), allocator);
-    
+
     return json;
 }
 
@@ -9834,7 +9834,7 @@ Value to_json(const DeltaPosition& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("deltaLatitude", to_json((p.deltaLatitude), allocator), allocator);
     json.AddMember("deltaLongitude", to_json((p.deltaLongitude), allocator), allocator);
-    
+
     return json;
 }
 
@@ -9897,7 +9897,7 @@ Value to_json(const ISO14823Code::ISO14823Code__pictogramCode::ISO14823Code__pic
     Value json(kObjectType);
     json.AddMember("nature", to_json((p.nature), allocator), allocator);
     json.AddMember("serialNumber", to_json((p.serialNumber), allocator), allocator);
-    
+
     return json;
 }
 
@@ -9955,7 +9955,7 @@ Value to_json(const LaneCharacteristics& p, Document::AllocatorType& allocator) 
     json.AddMember("laneDelimitationLeft", to_json((p.laneDelimitationLeft), allocator), allocator);
     json.AddMember("laneDelimitationRight", to_json((p.laneDelimitationRight), allocator), allocator);
     json.AddMember("mergingWith", to_json((p.mergingWith), allocator), allocator);
-    
+
     return json;
 }
 
@@ -9989,7 +9989,7 @@ Value to_json(const LayoutComponent& p, Document::AllocatorType& allocator) {
     json.AddMember("x", to_json((p.x), allocator), allocator);
     json.AddMember("y", to_json((p.y), allocator), allocator);
     json.AddMember("textScripting", to_json((p.textScripting), allocator), allocator);
-    
+
     return json;
 }
 
@@ -10020,7 +10020,7 @@ Value to_json(const LoadType& p, Document::AllocatorType& allocator) {
     json.AddMember("goodsType", to_json((p.goodsType), allocator), allocator);
     json.AddMember("dangerousGoodsType", to_json((p.dangerousGoodsType), allocator), allocator);
     json.AddMember("specialTransportType", to_json_ITS_Container_SpecialTransportType((p.specialTransportType), allocator), allocator);
-    
+
     return json;
 }
 
@@ -10081,7 +10081,7 @@ Value to_json(const RoadSurfaceDynamicCharacteristics& p, Document::AllocatorTyp
     json.AddMember("temperature", to_json((p.temperature), allocator), allocator);
     json.AddMember("iceOrWaterDepth", to_json((p.iceOrWaterDepth), allocator), allocator);
     json.AddMember("treatment", to_json((p.treatment), allocator), allocator);
-    
+
     return json;
 }
 
@@ -10111,7 +10111,7 @@ Value to_json(const RoadSurfaceStaticCharacteristics& p, Document::AllocatorType
     json.AddMember("material", to_json((p.material), allocator), allocator);
     json.AddMember("wear", to_json((p.wear), allocator), allocator);
     json.AddMember("avBankingAngle", to_json((p.avBankingAngle), allocator), allocator);
-    
+
     return json;
 }
 
@@ -10148,7 +10148,7 @@ void from_json(const Value& j, Text& p, std::string field) {
         if (j.HasMember("layoutComponentId")) { p.layoutComponentId = vanetza::asn1::allocate<long>(); from_json(j["layoutComponentId"], *(p.layoutComponentId), "layoutComponentId"); }
         else { p.layoutComponentId=nullptr; }
         from_json(j["textContent"], (p.textContent), "textContent");
-        
+
     } catch(VanetzaJSONException& ex) {
         ex.addContext(field);
         ex.rethrow();
@@ -10280,7 +10280,7 @@ Value to_json(const VehicleCharacteristicsRanges& p, Document::AllocatorType& al
     Value json(kObjectType);
     json.AddMember("comparisonOperator", to_json((p.comparisonOperator), allocator), allocator);
     json.AddMember("limits", to_json((p.limits), allocator), allocator);
-    
+
     return json;
 }
 
@@ -10306,7 +10306,7 @@ Value to_json(const CAM_PDU_Descriptions_BasicContainer_t& p, Document::Allocato
     Value json(kObjectType);
     json.AddMember("stationType", to_json((p.stationType), allocator), allocator);
     json.AddMember("referencePosition", to_json((p.referencePosition), allocator), allocator);
-    
+
     return json;
 }
 
@@ -10393,7 +10393,7 @@ Value to_json(const BasicVehicleContainerLowFrequency& p, Document::AllocatorTyp
     json.AddMember("vehicleRole", to_json((p.vehicleRole), allocator), allocator);
     json.AddMember("exteriorLights", to_json_ITS_Container_ExteriorLights((p.exteriorLights), allocator), allocator);
     json.AddMember("pathHistory", to_json((p.pathHistory), allocator), allocator);
-    
+
     return json;
 }
 
@@ -10446,7 +10446,7 @@ Value to_json(const SpecialTransportContainer& p, Document::AllocatorType& alloc
     Value json(kObjectType);
     json.AddMember("specialTransportType", to_json_ITS_Container_SpecialTransportType((p.specialTransportType), allocator), allocator);
     json.AddMember("lightBarSirenInUse", to_json_ITS_Container_LightBarSirenInUse((p.lightBarSirenInUse), allocator), allocator);
-    
+
     return json;
 }
 
@@ -10471,7 +10471,7 @@ void from_json(const Value& j, SpecialTransportContainer& p, std::string field) 
 Value to_json(const DangerousGoodsContainer& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("dangerousGoodsBasic", to_json((p.dangerousGoodsBasic), allocator), allocator);
-    
+
     return json;
 }
 
@@ -10524,7 +10524,7 @@ void from_json(const Value& j, RoadWorksContainerBasic& p, std::string field) {
 Value to_json(const RescueContainer& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("lightBarSirenInUse", to_json_ITS_Container_LightBarSirenInUse((p.lightBarSirenInUse), allocator), allocator);
-    
+
     return json;
 }
 
@@ -10608,7 +10608,7 @@ void from_json(const Value& j, SafetyCarContainer& p, std::string field) {
 
 Value to_json(const RSUContainerHighFrequency& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
-    
+
     if (p.protectedCommunicationZonesRSU != 0) json.AddMember("protectedCommunicationZonesRSU", to_json(*(p.protectedCommunicationZonesRSU), allocator), allocator);
     return json;
 }
@@ -10754,7 +10754,7 @@ Value to_json(const ImpactReductionContainer& p, Document::AllocatorType& alloca
     json.AddMember("positionOfOccupants", to_json_ITS_Container_PositionOfOccupants((p.positionOfOccupants), allocator), allocator);
     json.AddMember("vehicleMass", to_json((p.vehicleMass), allocator), allocator);
     json.AddMember("requestResponseIndication", to_json((p.requestResponseIndication), allocator), allocator);
-    
+
     return json;
 }
 
@@ -10788,7 +10788,7 @@ void from_json(const Value& j, ImpactReductionContainer& p, std::string field) {
 
 Value to_json(const StationaryVehicleContainer& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
-    
+
     if (p.stationarySince != 0) json.AddMember("stationarySince", to_json(*(p.stationarySince), allocator), allocator);
     if (p.stationaryCause != 0) json.AddMember("stationaryCause", to_json(*(p.stationaryCause), allocator), allocator);
     if (p.carryingDangerousGoods != 0) json.AddMember("carryingDangerousGoods", to_json(*(p.carryingDangerousGoods), allocator), allocator);
@@ -10862,7 +10862,7 @@ Value to_json(const VAM_PDU_Descriptions_MapPosition_t& p, Document::AllocatorTy
     Value json(kObjectType);
     json.AddMember("intersectionId", to_json((p.intersectionId), allocator), allocator);
     json.AddMember("lane", to_json((p.lane), allocator), allocator);
-    
+
     return json;
 }
 
@@ -10886,7 +10886,7 @@ void from_json(const Value& j, VAM_PDU_Descriptions_MapPosition_t& p, std::strin
 
 Value to_json(const VruLowFrequencyContainer& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
-    
+
     if (p.profileAndSubprofile != 0) json.AddMember("profileAndSubprofile", to_json(*(p.profileAndSubprofile), allocator), allocator);
     if (p.exteriorLights != 0) json.AddMember("exteriorLights", to_json(*(p.exteriorLights), allocator), allocator);
     if (p.sizeClass != 0) json.AddMember("sizeClass", to_json(*(p.sizeClass), allocator), allocator);
@@ -10961,7 +10961,7 @@ Value to_json(const VAM_PDU_Descriptions_VruExteriorLights_t& p, Document::Alloc
     Value json(kObjectType);
     json.AddMember("vruSpecific", to_json_VAM_PDU_Descriptions_VruSpecificExteriorLights((p.vruSpecific), allocator), allocator);
     json.AddMember("vehicular", to_json_ITS_Container_ExteriorLights((p.vehicular), allocator), allocator);
-    
+
     return json;
 }
 
@@ -11075,7 +11075,7 @@ void from_json_ClusterProfiles(const Value& j, ClusterProfiles_t& p, std::string
 
 Value to_json(const VruClusterOperationContainer& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
-    
+
     if (p.clusterJoinInfo != 0) json.AddMember("clusterJoinInfo", to_json(*(p.clusterJoinInfo), allocator), allocator);
     if (p.clusterLeaveInfo != 0) json.AddMember("clusterLeaveInfo", to_json(*(p.clusterLeaveInfo), allocator), allocator);
     if (p.clusterBreakupInfo != 0) json.AddMember("clusterBreakupInfo", to_json(*(p.clusterBreakupInfo), allocator), allocator);
@@ -11111,7 +11111,7 @@ Value to_json(const VAM_PDU_Descriptions_ClusterJoinInfo_t& p, Document::Allocat
     Value json(kObjectType);
     json.AddMember("clusterId", to_json((p.clusterId), allocator), allocator);
     json.AddMember("joinTime", to_json((p.joinTime), allocator), allocator);
-    
+
     return json;
 }
 
@@ -11137,7 +11137,7 @@ Value to_json(const VAM_PDU_Descriptions_ClusterLeaveInfo_t& p, Document::Alloca
     Value json(kObjectType);
     json.AddMember("clusterId", to_json((p.clusterId), allocator), allocator);
     json.AddMember("clusterLeaveReason", to_json((p.clusterLeaveReason), allocator), allocator);
-    
+
     return json;
 }
 
@@ -11163,7 +11163,7 @@ Value to_json(const VAM_PDU_Descriptions_ClusterBreakupInfo_t& p, Document::Allo
     Value json(kObjectType);
     json.AddMember("clusterBreakupReason", to_json((p.clusterBreakupReason), allocator), allocator);
     json.AddMember("breakupTime", to_json((p.breakupTime), allocator), allocator);
-    
+
     return json;
 }
 
@@ -11305,7 +11305,7 @@ Value to_json(const VAM_PDU_Descriptions_HeadingChangeIndication_t& p, Document:
     Value json(kObjectType);
     json.AddMember("direction", to_json((p.direction), allocator), allocator);
     json.AddMember("actionDeltaTime", to_json((p.actionDeltaTime), allocator), allocator);
-    
+
     return json;
 }
 
@@ -11331,7 +11331,7 @@ Value to_json(const VAM_PDU_Descriptions_AccelerationChangeIndication_t& p, Docu
     Value json(kObjectType);
     json.AddMember("accelOrDecel", to_json((p.accelOrDecel), allocator), allocator);
     json.AddMember("actionDeltaTime", to_json((p.actionDeltaTime), allocator), allocator);
-    
+
     return json;
 }
 
@@ -11357,7 +11357,7 @@ Value to_json(const VAM_PDU_Descriptions_StabilityChangeIndication_t& p, Documen
     Value json(kObjectType);
     json.AddMember("lossProbability", to_json((p.lossProbability), allocator), allocator);
     json.AddMember("actionDeltaTime", to_json((p.actionDeltaTime), allocator), allocator);
-    
+
     return json;
 }
 
@@ -11517,7 +11517,7 @@ void from_json(const Value& j, LaneDataAttributeList& p, std::string field) {
 
 Value to_json(const NodeAttributeSetXY_t& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
-    
+
     if (p.localNode != 0) json.AddMember("localNode", to_json(*(p.localNode), allocator), allocator);
     if (p.disabled != 0) json.AddMember("disabled", to_json(*(p.disabled), allocator), allocator);
     if (p.enabled != 0) json.AddMember("enabled", to_json(*(p.enabled), allocator), allocator);
@@ -11560,7 +11560,7 @@ Value to_json(const CpmPayload& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("managementContainer", to_json((p.managementContainer), allocator), allocator);
     json.AddMember("cpmContainers", to_json((p.cpmContainers), allocator), allocator);
-    
+
     return json;
 }
 
@@ -11586,7 +11586,7 @@ Value to_json(const MessageRateRange& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("messageRateMin", to_json((p.messageRateMin), allocator), allocator);
     json.AddMember("messageRateMax", to_json((p.messageRateMax), allocator), allocator);
-    
+
     return json;
 }
 
@@ -11610,7 +11610,7 @@ void from_json(const Value& j, MessageRateRange& p, std::string field) {
 
 Value to_json(const OriginatingRsuContainer& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
-    
+
     if (p.mapReference != 0) json.AddMember("mapReference", to_json(*(p.mapReference), allocator), allocator);
     return json;
 }
@@ -11702,7 +11702,7 @@ Value to_json(const ItsPOIHeader& p, Document::AllocatorType& allocator) {
     json.AddMember("poiType", to_json((p.poiType), allocator), allocator);
     json.AddMember("timeStamp", to_json((p.timeStamp), allocator), allocator);
     json.AddMember("relayCapable", to_json((p.relayCapable), allocator), allocator);
-    
+
     return json;
 }
 
@@ -11780,20 +11780,20 @@ void from_json_ChargingSpotType(const Value& j, ChargingSpotType_t& p, std::stri
 
 Value to_json_TypeOfReceptacle(const TypeOfReceptacle_t p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
-    
+
     return json;
 }
 
 void from_json_TypeOfReceptacle(const Value& j, TypeOfReceptacle_t& p, std::string field) {
     try {
         TypeOfReceptacle_t* p_tmp = vanetza::asn1::allocate<TypeOfReceptacle_t>();
-        
-        
+
+
         p_tmp->size = (0 / 8) + 1;
         p_tmp->bits_unused = (0 % 8) != 0 ? 8 - (0 % 8) : 0;
         p_tmp->buf = (uint8_t *) calloc(1, sizeof(uint8_t) * p_tmp->size);
         *(p_tmp->buf + (sizeof(uint8_t) * 0)) = (uint8_t) 0;
-        
+
         p = *p_tmp;
         delete p_tmp;
     } catch(VanetzaJSONException& ex) {
@@ -11811,7 +11811,7 @@ Value to_json(const SpotAvailability& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("maxWaitingTimeMinutes", to_json((p.maxWaitingTimeMinutes), allocator), allocator);
     json.AddMember("blocking", to_json((p.blocking), allocator), allocator);
-    
+
     return json;
 }
 
@@ -11869,7 +11869,7 @@ Value to_json(const RechargingType& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("rechargingMode", to_json((p.rechargingMode), allocator), allocator);
     json.AddMember("powerSource", to_json((p.powerSource), allocator), allocator);
-    
+
     return json;
 }
 
@@ -11929,7 +11929,7 @@ Value to_json(const IMZM_PDU_Descriptions_InterferenceManagementChannel_t& p, Do
     json.AddMember("centreFrequency", to_json((p.centreFrequency), allocator), allocator);
     json.AddMember("channelWidth", to_json((p.channelWidth), allocator), allocator);
     json.AddMember("exponent", to_json((p.exponent), allocator), allocator);
-    
+
     return json;
 }
 
@@ -12022,7 +12022,7 @@ void from_json(const Value& j, IMZM_PDU_Descriptions_MitigationPerTechnologyClas
 Value to_json(const TisTpgDRM_Situation& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("causeCode", to_json((p.causeCode), allocator), allocator);
-    
+
     return json;
 }
 
@@ -12083,7 +12083,7 @@ Value to_json(const TisTpgSNM_Management& p, Document::AllocatorType& allocator)
     Value json(kObjectType);
     json.AddMember("generationTime", to_json((p.generationTime), allocator), allocator);
     json.AddMember("totalTpgStations", to_json((p.totalTpgStations), allocator), allocator);
-    
+
     return json;
 }
 
@@ -12136,7 +12136,7 @@ Value to_json(const TisTpgTRM_Location& p, Document::AllocatorType& allocator) {
     json.AddMember("vehiclePosition", to_json((p.vehiclePosition), allocator), allocator);
     json.AddMember("vehicleSpeed", to_json((p.vehicleSpeed), allocator), allocator);
     json.AddMember("vehicleHeading", to_json((p.vehicleHeading), allocator), allocator);
-    
+
     return json;
 }
 
@@ -12161,7 +12161,7 @@ void from_json(const Value& j, TisTpgTRM_Location& p, std::string field) {
 
 Value to_json(const TisTpgTCM_Location& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
-    
+
     if (p.tpgLocation != 0) json.AddMember("tpgLocation", to_json(*(p.tpgLocation), allocator), allocator);
     if (p.address != 0) json.AddMember("address", to_json(*(p.address), allocator), allocator);
     return json;
@@ -12349,20 +12349,20 @@ void from_json(const Value& j, AppliedTyrePressure& p, std::string field) {
 
 Value to_json_TyreSidewallInformation(const TyreSidewallInformation_t p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
-    
+
     return json;
 }
 
 void from_json_TyreSidewallInformation(const Value& j, TyreSidewallInformation_t& p, std::string field) {
     try {
         TyreSidewallInformation_t* p_tmp = vanetza::asn1::allocate<TyreSidewallInformation_t>();
-        
-        
+
+
         p_tmp->size = (0 / 8) + 1;
         p_tmp->bits_unused = (0 % 8) != 0 ? 8 - (0 % 8) : 0;
         p_tmp->buf = (uint8_t *) calloc(1, sizeof(uint8_t) * p_tmp->size);
         *(p_tmp->buf + (sizeof(uint8_t) * 0)) = (uint8_t) 0;
-        
+
         p = *p_tmp;
         delete p_tmp;
     } catch(VanetzaJSONException& ex) {
@@ -12378,20 +12378,20 @@ void from_json_TyreSidewallInformation(const Value& j, TyreSidewallInformation_t
 
 Value to_json_CurrentVehicleConfiguration(const CurrentVehicleConfiguration_t p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
-    
+
     return json;
 }
 
 void from_json_CurrentVehicleConfiguration(const Value& j, CurrentVehicleConfiguration_t& p, std::string field) {
     try {
         CurrentVehicleConfiguration_t* p_tmp = vanetza::asn1::allocate<CurrentVehicleConfiguration_t>();
-        
-        
+
+
         p_tmp->size = (0 / 8) + 1;
         p_tmp->bits_unused = (0 % 8) != 0 ? 8 - (0 % 8) : 0;
         p_tmp->buf = (uint8_t *) calloc(1, sizeof(uint8_t) * p_tmp->size);
         *(p_tmp->buf + (sizeof(uint8_t) * 0)) = (uint8_t) 0;
-        
+
         p = *p_tmp;
         delete p_tmp;
     } catch(VanetzaJSONException& ex) {
@@ -12407,20 +12407,20 @@ void from_json_CurrentVehicleConfiguration(const Value& j, CurrentVehicleConfigu
 
 Value to_json_TIN(const TIN_t p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
-    
+
     return json;
 }
 
 void from_json_TIN(const Value& j, TIN_t& p, std::string field) {
     try {
         TIN_t* p_tmp = vanetza::asn1::allocate<TIN_t>();
-        
-        
+
+
         p_tmp->size = (0 / 8) + 1;
         p_tmp->bits_unused = (0 % 8) != 0 ? 8 - (0 % 8) : 0;
         p_tmp->buf = (uint8_t *) calloc(1, sizeof(uint8_t) * p_tmp->size);
         *(p_tmp->buf + (sizeof(uint8_t) * 0)) = (uint8_t) 0;
-        
+
         p = *p_tmp;
         delete p_tmp;
     } catch(VanetzaJSONException& ex) {
@@ -12436,20 +12436,20 @@ void from_json_TIN(const Value& j, TIN_t& p, std::string field) {
 
 Value to_json_PressureConfiguration(const PressureConfiguration_t p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
-    
+
     return json;
 }
 
 void from_json_PressureConfiguration(const Value& j, PressureConfiguration_t& p, std::string field) {
     try {
         PressureConfiguration_t* p_tmp = vanetza::asn1::allocate<PressureConfiguration_t>();
-        
-        
+
+
         p_tmp->size = (0 / 8) + 1;
         p_tmp->bits_unused = (0 % 8) != 0 ? 8 - (0 % 8) : 0;
         p_tmp->buf = (uint8_t *) calloc(1, sizeof(uint8_t) * p_tmp->size);
         *(p_tmp->buf + (sizeof(uint8_t) * 0)) = (uint8_t) 0;
-        
+
         p = *p_tmp;
         delete p_tmp;
     } catch(VanetzaJSONException& ex) {
@@ -12579,20 +12579,20 @@ void from_json_TisProfile(const Value& j, TisProfile_t& p, std::string field) {
 
 Value to_json_Language(const Language_t p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
-    
+
     return json;
 }
 
 void from_json_Language(const Value& j, Language_t& p, std::string field) {
     try {
         Language_t* p_tmp = vanetza::asn1::allocate<Language_t>();
-        
-        
+
+
         p_tmp->size = (0 / 8) + 1;
         p_tmp->bits_unused = (0 % 8) != 0 ? 8 - (0 % 8) : 0;
         p_tmp->buf = (uint8_t *) calloc(1, sizeof(uint8_t) * p_tmp->size);
         *(p_tmp->buf + (sizeof(uint8_t) * 0)) = (uint8_t) 0;
-        
+
         p = *p_tmp;
         delete p_tmp;
     } catch(VanetzaJSONException& ex) {
@@ -12612,7 +12612,7 @@ Value to_json(const McmBasicContainer& p, Document::AllocatorType& allocator) {
     json.AddMember("stationID", to_json((p.stationID), allocator), allocator);
     json.AddMember("stationType", to_json((p.stationType), allocator), allocator);
     json.AddMember("deltaReferencePosition", to_json((p.deltaReferencePosition), allocator), allocator);
-    
+
     return json;
 }
 
@@ -12675,7 +12675,7 @@ Value to_json(const McmGenericCurrentState& p, Document::AllocatorType& allocato
     json.AddMember("maneuverCoordinationConcept", to_json((p.maneuverCoordinationConcept), allocator), allocator);
     json.AddMember("maneuverCoordinationRational", to_json((p.maneuverCoordinationRational), allocator), allocator);
     json.AddMember("maneuverExecutionStatus", to_json((p.maneuverExecutionStatus), allocator), allocator);
-    
+
     return json;
 }
 
@@ -12705,7 +12705,7 @@ Value to_json(const VehicleAutomationState& p, Document::AllocatorType& allocato
     json.AddMember("humanDrivingLongitudinalAutomated", to_json((p.humanDrivingLongitudinalAutomated), allocator), allocator);
     json.AddMember("humanDrivenLateralAutomated", to_json((p.humanDrivenLateralAutomated), allocator), allocator);
     json.AddMember("automatedDriving", to_json((p.automatedDriving), allocator), allocator);
-    
+
     return json;
 }
 
@@ -12732,7 +12732,7 @@ Value to_json(const VehicleSize& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("vehicleLenth", to_json((p.vehicleLenth), allocator), allocator);
     json.AddMember("vehicleWidth", to_json((p.vehicleWidth), allocator), allocator);
-    
+
     return json;
 }
 
@@ -12760,7 +12760,7 @@ Value to_json(const ReferenceStartingPosition& p, Document::AllocatorType& alloc
     json.AddMember("longitude", to_json(((p.longitude) == 1800000001) ? (p.longitude) : (double)(p.longitude) / 10000000.0, allocator), allocator);
     json.AddMember("positionConfidenceEllipse", to_json((p.positionConfidenceEllipse), allocator), allocator);
     json.AddMember("altitude", to_json((p.altitude), allocator), allocator);
-    
+
     return json;
 }
 
@@ -12788,7 +12788,7 @@ Value to_json(const IntermediatePointIntersection::IntermediatePointIntersection
     Value json(kObjectType);
     json.AddMember("lanePosition", to_json((p.lanePosition), allocator), allocator);
     json.AddMember("laneCount", to_json((p.laneCount), allocator), allocator);
-    
+
     return json;
 }
 
@@ -12816,7 +12816,7 @@ Value to_json(const IntermediatePointIntersection& p, Document::AllocatorType& a
     json.AddMember("exitHeading", to_json((p.exitHeading), allocator), allocator);
     json.AddMember("timeOfPosEntry", to_json((p.timeOfPosEntry), allocator), allocator);
     json.AddMember("timeOfPosExit", to_json((p.timeOfPosExit), allocator), allocator);
-    
+
     return json;
 }
 
@@ -12845,7 +12845,7 @@ Value to_json(const IntermediatePointOffroad& p, Document::AllocatorType& alloca
     json.AddMember("referencePosition", to_json((p.referencePosition), allocator), allocator);
     json.AddMember("referenceHeading", to_json((p.referenceHeading), allocator), allocator);
     json.AddMember("timeOfPos", to_json((p.timeOfPos), allocator), allocator);
-    
+
     return json;
 }
 
@@ -12872,7 +12872,7 @@ Value to_json(const Lane& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("lanePosition", to_json((p.lanePosition), allocator), allocator);
     json.AddMember("laneCount", to_json((p.laneCount), allocator), allocator);
-    
+
     return json;
 }
 
@@ -12898,7 +12898,7 @@ Value to_json(const AcknowledgmentContainer& p, Document::AllocatorType& allocat
     Value json(kObjectType);
     json.AddMember("acknowledgedType", to_json((p.acknowledgedType), allocator), allocator);
     json.AddMember("generationDeltaTime", to_json((p.generationDeltaTime), allocator), allocator);
-    
+
     return json;
 }
 
@@ -13006,7 +13006,7 @@ Value to_json(const ETSI_ITS_CDD_BasicContainer_t& p, Document::AllocatorType& a
     Value json(kObjectType);
     json.AddMember("stationType", to_json((p.stationType), allocator), allocator);
     json.AddMember("referencePosition", to_json((p.referencePosition), allocator), allocator);
-    
+
     return json;
 }
 
@@ -13189,7 +13189,7 @@ Value to_json(const IvimReference_t& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("serviceProviderId", to_json((p.serviceProviderId), allocator), allocator);
     json.AddMember("iviIdentificationNumber", to_json((p.iviIdentificationNumber), allocator), allocator);
-    
+
     return json;
 }
 
@@ -13294,7 +13294,7 @@ Value to_json(const LowerTriangularPositiveSemidefiniteMatrix_t& p, Document::Al
     Value json(kObjectType);
     json.AddMember("componentsIncludedIntheMatrix", to_json_MatrixIncludedComponents((p.componentsIncludedIntheMatrix), allocator), allocator);
     json.AddMember("matrix", to_json((p.matrix), allocator), allocator);
-    
+
     return json;
 }
 
@@ -13318,7 +13318,7 @@ void from_json(const Value& j, LowerTriangularPositiveSemidefiniteMatrix_t& p, s
 
 Value to_json(const MapemElementReference_t& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
-    
+
     if (p.mapReference != 0) json.AddMember("mapReference", to_json(*(p.mapReference), allocator), allocator);
     if (p.laneIds != 0) json.AddMember("laneIds", to_json(*(p.laneIds), allocator), allocator);
     if (p.connectionIds != 0) json.AddMember("connectionIds", to_json(*(p.connectionIds), allocator), allocator);
@@ -13349,7 +13349,7 @@ void from_json(const Value& j, MapemElementReference_t& p, std::string field) {
 
 Value to_json(const ETSI_ITS_CDD_MapPosition_t& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
-    
+
     if (p.mapReference != 0) json.AddMember("mapReference", to_json(*(p.mapReference), allocator), allocator);
     if (p.laneId != 0) json.AddMember("laneId", to_json(*(p.laneId), allocator), allocator);
     if (p.connectionId != 0) json.AddMember("connectionId", to_json(*(p.connectionId), allocator), allocator);
@@ -13605,7 +13605,7 @@ Value to_json(const PathExtended_t& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("pointOfEventZone", to_json((p.pointOfEventZone), allocator), allocator);
     json.AddMember("path", to_json((p.path), allocator), allocator);
-    
+
     return json;
 }
 
@@ -13951,7 +13951,7 @@ void from_json(const Value& j, VelocityCartesian_t& p, std::string field) {
 
 Value to_json(const IntersectionState_addGrpC& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
-    
+
     if (p.activePrioritizations != 0) json.AddMember("activePrioritizations", to_json(*(p.activePrioritizations), allocator), allocator);
     return json;
 }
@@ -13976,7 +13976,7 @@ void from_json(const Value& j, IntersectionState_addGrpC& p, std::string field) 
 
 Value to_json(const NodeAttributeSet_addGrpC& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
-    
+
     if (p.ptvRequest != 0) json.AddMember("ptvRequest", to_json(*(p.ptvRequest), allocator), allocator);
     if (p.nodeLink != 0) json.AddMember("nodeLink", to_json(*(p.nodeLink), allocator), allocator);
     if (p.node != 0) json.AddMember("node", to_json(*(p.node), allocator), allocator);
@@ -14074,7 +14074,7 @@ Value to_json(const SignalHeadLocation_t& p, Document::AllocatorType& allocator)
     json.AddMember("nodeXY", to_json((p.nodeXY), allocator), allocator);
     json.AddMember("nodeZ", to_json((p.nodeZ), allocator), allocator);
     json.AddMember("signalGroupID", to_json((p.signalGroupID), allocator), allocator);
-    
+
     return json;
 }
 
@@ -14484,7 +14484,7 @@ Value to_json(const RestrictionClassAssignment& p, Document::AllocatorType& allo
     Value json(kObjectType);
     json.AddMember("id", to_json((p.id), allocator), allocator);
     json.AddMember("users", to_json((p.users), allocator), allocator);
-    
+
     return json;
 }
 
@@ -14542,7 +14542,7 @@ Value to_json(const RTCMheader& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("status", to_json_GNSSstatus((p.status), allocator), allocator);
     json.AddMember("offsetSet", to_json((p.offsetSet), allocator), allocator);
-    
+
     return json;
 }
 
@@ -14707,7 +14707,7 @@ Value to_json(const CS1& p, Document::AllocatorType& allocator) {
     json.AddMember("countryCode", to_json_AVIAEINumberingAndDataStructures_CountryCode((p.countryCode), allocator), allocator);
     json.AddMember("issuerIdentifier", to_json((p.issuerIdentifier), allocator), allocator);
     json.AddMember("serviceNumber", to_json_ServiceNumber((p.serviceNumber), allocator), allocator);
-    
+
     return json;
 }
 
@@ -14734,7 +14734,7 @@ Value to_json(const CS2& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("manufacturerIdentifier", to_json((p.manufacturerIdentifier), allocator), allocator);
     json.AddMember("serviceNumber", to_json_ServiceNumber((p.serviceNumber), allocator), allocator);
-    
+
     return json;
 }
 
@@ -14762,7 +14762,7 @@ Value to_json(const CS3& p, Document::AllocatorType& allocator) {
     json.AddMember("stopTime", to_json((p.stopTime), allocator), allocator);
     json.AddMember("geographLimit", to_json_GeoGraphicalLimit((p.geographLimit), allocator), allocator);
     json.AddMember("serviceAppLimit", to_json_ServiceApplicationLimit((p.serviceAppLimit), allocator), allocator);
-    
+
     return json;
 }
 
@@ -14791,7 +14791,7 @@ Value to_json(const CS4& p, Document::AllocatorType& allocator) {
     json.AddMember("countryCode", to_json_AVIAEINumberingAndDataStructures_CountryCode((p.countryCode), allocator), allocator);
     json.AddMember("alphabetIndicator", to_json((p.alphabetIndicator), allocator), allocator);
     json.AddMember("licPlateNumber", to_json((p.licPlateNumber), allocator), allocator);
-    
+
     return json;
 }
 
@@ -14818,7 +14818,7 @@ Value to_json(const CS8& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("countryCode", to_json_AVIAEINumberingAndDataStructures_CountryCode((p.countryCode), allocator), allocator);
     json.AddMember("taxCode", to_json((p.taxCode), allocator), allocator);
-    
+
     return json;
 }
 
@@ -14827,7 +14827,7 @@ void from_json(const Value& j, CS8& p, std::string field) {
         p._asn_ctx.ptr = nullptr;
         from_json_AVIAEINumberingAndDataStructures_CountryCode(j["countryCode"],(p.countryCode), "countryCode");
         from_json(j["taxCode"], (p.taxCode), "taxCode");
-        
+
     } catch(VanetzaJSONException& ex) {
         ex.addContext(field);
         ex.rethrow();
@@ -14845,7 +14845,7 @@ Value to_json(const InternationalSign_applicablePeriod::InternationalSign_applic
     Value json(kObjectType);
     json.AddMember("dateRangeStartMonthDay", to_json((p.dateRangeStartMonthDay), allocator), allocator);
     json.AddMember("dateRangeEndMonthDay", to_json((p.dateRangeEndMonthDay), allocator), allocator);
-    
+
     return json;
 }
 
@@ -14871,7 +14871,7 @@ Value to_json(const InternationalSign_applicablePeriod::InternationalSign_applic
     Value json(kObjectType);
     json.AddMember("timeRangeStartTime", to_json((p.timeRangeStartTime), allocator), allocator);
     json.AddMember("timeRangeEndTime", to_json((p.timeRangeEndTime), allocator), allocator);
-    
+
     return json;
 }
 
@@ -14895,7 +14895,7 @@ void from_json(const Value& j, InternationalSign_applicablePeriod::International
 
 Value to_json(const InternationalSign_applicablePeriod& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
-    
+
     if (p.year != 0) json.AddMember("year", to_json(*(p.year), allocator), allocator);
     if (p.month_day != 0) json.AddMember("month-day", to_json(*(p.month_day), allocator), allocator);
     if (p.repeatingPeriodDayTypes != 0) json.AddMember("repeatingPeriodDayTypes", to_json_RepeatingPeriodDayTypes(*(p.repeatingPeriodDayTypes), allocator), allocator);
@@ -14935,7 +14935,7 @@ void from_json(const Value& j, InternationalSign_applicablePeriod& p, std::strin
 
 Value to_json(const InternationalSign_applicableVehicleDimensions& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
-    
+
     if (p.vehicleHeight != 0) json.AddMember("vehicleHeight", to_json(*(p.vehicleHeight), allocator), allocator);
     if (p.vehicleWidth != 0) json.AddMember("vehicleWidth", to_json(*(p.vehicleWidth), allocator), allocator);
     if (p.vehicleLength != 0) json.AddMember("vehicleLength", to_json(*(p.vehicleLength), allocator), allocator);
@@ -14969,7 +14969,7 @@ void from_json(const Value& j, InternationalSign_applicableVehicleDimensions& p,
 
 Value to_json(const InternationalSign_section& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
-    
+
     if (p.startingPointLength != 0) json.AddMember("startingPointLength", to_json(*(p.startingPointLength), allocator), allocator);
     if (p.continuityLength != 0) json.AddMember("continuityLength", to_json(*(p.continuityLength), allocator), allocator);
     return json;
@@ -15043,7 +15043,7 @@ Value to_json(const CreditRs_t& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("creditResult", to_json((p.creditResult), allocator), allocator);
     json.AddMember("creditAuthenticator", to_json((p.creditAuthenticator), allocator), allocator);
-    
+
     return json;
 }
 
@@ -15069,7 +15069,7 @@ Value to_json(const DebitRs_t& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("debitResult", to_json((p.debitResult), allocator), allocator);
     json.AddMember("debitAuthenticator", to_json((p.debitAuthenticator), allocator), allocator);
-    
+
     return json;
 }
 
@@ -15095,7 +15095,7 @@ Value to_json(const ContractValidity_t& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("contractRestrictions", to_json((p.contractRestrictions), allocator), allocator);
     json.AddMember("contractExpiryDate", to_json((p.contractExpiryDate), allocator), allocator);
-    
+
     return json;
 }
 
@@ -15121,7 +15121,7 @@ Value to_json(const PaymentFee_t& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("paymentFeeAmount", to_json((p.paymentFeeAmount), allocator), allocator);
     json.AddMember("paymentFeeUnit", to_json((p.paymentFeeUnit), allocator), allocator);
-    
+
     return json;
 }
 
@@ -15148,7 +15148,7 @@ Value to_json(const PaymentMeans_t& p, Document::AllocatorType& allocator) {
     json.AddMember("personalAccountNumber", to_json((p.personalAccountNumber), allocator), allocator);
     json.AddMember("paymentMeansExpiryDate", to_json((p.paymentMeansExpiryDate), allocator), allocator);
     json.AddMember("pamentMeansUsageControl", to_json((p.pamentMeansUsageControl), allocator), allocator);
-    
+
     return json;
 }
 
@@ -15185,7 +15185,7 @@ Value to_json(const ReceiptData_t& p, Document::AllocatorType& allocator) {
     json.AddMember("sessionTypeOfContract", to_json((p.sessionTypeOfContract), allocator), allocator);
     json.AddMember("sessionContextVersion", to_json((p.sessionContextVersion), allocator), allocator);
     json.AddMember("receiptDataAuthenticator", to_json((p.receiptDataAuthenticator), allocator), allocator);
-    
+
     return json;
 }
 
@@ -15204,7 +15204,7 @@ void from_json(const Value& j, ReceiptData_t& p, std::string field) {
         from_json(j["sessionTypeOfContract"], (p.sessionTypeOfContract), "sessionTypeOfContract");
         from_json(j["sessionContextVersion"], (p.sessionContextVersion), "sessionContextVersion");
         from_json(j["receiptDataAuthenticator"], (p.receiptDataAuthenticator), "receiptDataAuthenticator");
-        
+
     } catch(VanetzaJSONException& ex) {
         ex.addContext(field);
         ex.rethrow();
@@ -15224,7 +15224,7 @@ Value to_json(const ReceiptFinancialPart_t& p, Document::AllocatorType& allocato
     json.AddMember("sessionPaymentFee", to_json((p.sessionPaymentFee), allocator), allocator);
     json.AddMember("sessionCurrentBalance", to_json((p.sessionCurrentBalance), allocator), allocator);
     json.AddMember("receiptFinancialSerialNumber", to_json((p.receiptFinancialSerialNumber), allocator), allocator);
-    
+
     return json;
 }
 
@@ -15256,7 +15256,7 @@ Value to_json(const ReceiptServicePart_t& p, Document::AllocatorType& allocator)
     json.AddMember("typeOfSession", to_json((p.typeOfSession), allocator), allocator);
     json.AddMember("sessionResultOperational", to_json((p.sessionResultOperational), allocator), allocator);
     json.AddMember("sessionResultFinancial", to_json((p.sessionResultFinancial), allocator), allocator);
-    
+
     return json;
 }
 
@@ -15269,7 +15269,7 @@ void from_json(const Value& j, ReceiptServicePart_t& p, std::string field) {
         from_json(j["typeOfSession"], (p.typeOfSession), "typeOfSession");
         from_json(j["sessionResultOperational"], (p.sessionResultOperational), "sessionResultOperational");
         from_json(j["sessionResultFinancial"], (p.sessionResultFinancial), "sessionResultFinancial");
-        
+
     } catch(VanetzaJSONException& ex) {
         ex.addContext(field);
         ex.rethrow();
@@ -15288,7 +15288,7 @@ Value to_json(const EfcDsrcApplication_TrailerCharacteristics_t& p, Document::Al
     json.AddMember("trailerDetails", to_json((p.trailerDetails), allocator), allocator);
     json.AddMember("trailerMaxLadenWeight", to_json((p.trailerMaxLadenWeight), allocator), allocator);
     json.AddMember("trailerWeightUnladen", to_json((p.trailerWeightUnladen), allocator), allocator);
-    
+
     return json;
 }
 
@@ -15900,7 +15900,7 @@ void from_json(const Value& j, Segment& p, std::string field) {
 
 Value to_json(const TractorCharacteristics& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
-    
+
     if (p.equalTo != 0) json.AddMember("equalTo", to_json(*(p.equalTo), allocator), allocator);
     if (p.notEqualTo != 0) json.AddMember("notEqualTo", to_json(*(p.notEqualTo), allocator), allocator);
     if (p.ranges != 0) json.AddMember("ranges", to_json(*(p.ranges), allocator), allocator);
@@ -15931,7 +15931,7 @@ void from_json(const Value& j, TractorCharacteristics& p, std::string field) {
 
 Value to_json(const IVI_TrailerCharacteristics& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
-    
+
     if (p.equalTo != 0) json.AddMember("equalTo", to_json(*(p.equalTo), allocator), allocator);
     if (p.notEqualTo != 0) json.AddMember("notEqualTo", to_json(*(p.notEqualTo), allocator), allocator);
     if (p.ranges != 0) json.AddMember("ranges", to_json(*(p.ranges), allocator), allocator);
@@ -16151,7 +16151,7 @@ void from_json(const Value& j, SpecialVehicleContainer& p, std::string field) {
 
 Value to_json(const RoadWorksContainerExtended& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
-    
+
     if (p.lightBarSirenInUse != 0) json.AddMember("lightBarSirenInUse", to_json_ITS_Container_LightBarSirenInUse(*(p.lightBarSirenInUse), allocator), allocator);
     if (p.closedLanes != 0) json.AddMember("closedLanes", to_json(*(p.closedLanes), allocator), allocator);
     if (p.restriction != 0) json.AddMember("restriction", to_json(*(p.restriction), allocator), allocator);
@@ -16200,7 +16200,7 @@ void from_json(const Value& j, RoadWorksContainerExtended& p, std::string field)
 
 Value to_json(const AlacarteContainer& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
-    
+
     if (p.lanePosition != 0) json.AddMember("lanePosition", to_json(*(p.lanePosition), allocator), allocator);
     if (p.impactReduction != 0) json.AddMember("impactReduction", to_json(*(p.impactReduction), allocator), allocator);
     if (p.externalTemperature != 0) json.AddMember("externalTemperature", to_json(*(p.externalTemperature), allocator), allocator);
@@ -16411,7 +16411,7 @@ Value to_json(const CollectivePerceptionMessage& p, Document::AllocatorType& all
     Value json(kObjectType);
     json.AddMember("header", to_json((p.header), allocator), allocator);
     json.AddMember("payload", to_json((p.payload), allocator), allocator);
-    
+
     return json;
 }
 
@@ -16567,7 +16567,7 @@ Value to_json(const PreReservationResponseMessage& p, Document::AllocatorType& a
     json.AddMember("availabilityStatus", to_json((p.availabilityStatus), allocator), allocator);
     json.AddMember("preReservationExpirationTime", to_json((p.preReservationExpirationTime), allocator), allocator);
     json.AddMember("supportedPaymentTypes", to_json_SupportedPaymentTypes((p.supportedPaymentTypes), allocator), allocator);
-    
+
     return json;
 }
 
@@ -16680,7 +16680,7 @@ Value to_json(const CancellationRequestMessage& p, Document::AllocatorType& allo
     json.AddMember("reservation-ID", to_json((p.reservation_ID), allocator), allocator);
     json.AddMember("reservation-Password", to_json((p.reservation_Password), allocator), allocator);
     json.AddMember("currentTime", to_json((p.currentTime), allocator), allocator);
-    
+
     return json;
 }
 
@@ -16707,7 +16707,7 @@ Value to_json(const CancellationResponseMessage& p, Document::AllocatorType& all
     Value json(kObjectType);
     json.AddMember("reservation-ID", to_json((p.reservation_ID), allocator), allocator);
     json.AddMember("cancellationResponseCode", to_json((p.cancellationResponseCode), allocator), allocator);
-    
+
     return json;
 }
 
@@ -16735,7 +16735,7 @@ Value to_json(const UpdateRequestMessage& p, Document::AllocatorType& allocator)
     json.AddMember("reservation-Password", to_json((p.reservation_Password), allocator), allocator);
     json.AddMember("updatedArrivalTime", to_json((p.updatedArrivalTime), allocator), allocator);
     json.AddMember("updatedDepartureTime", to_json((p.updatedDepartureTime), allocator), allocator);
-    
+
     return json;
 }
 
@@ -17066,7 +17066,7 @@ void from_json(const Value& j, TisTpgVDPM_Management& p, std::string field) {
         from_json(j["fillingStatus"], (p.fillingStatus), "fillingStatus");
         if (j.HasMember("pairingID")) { p.pairingID = vanetza::asn1::allocate<PairingID_t>(); from_json(j["pairingID"], *(p.pairingID), "pairingID"); }
         else { p.pairingID=nullptr; }
-        
+
     } catch(VanetzaJSONException& ex) {
         ex.addContext(field);
         ex.rethrow();
@@ -17118,7 +17118,7 @@ Value to_json(const PressureVariant& p, Document::AllocatorType& allocator) {
     json.AddMember("pressureConfiguration", to_json_PressureConfiguration((p.pressureConfiguration), allocator), allocator);
     json.AddMember("frontAxlePressure", to_json((p.frontAxlePressure), allocator), allocator);
     json.AddMember("rearAxlePressure", to_json((p.rearAxlePressure), allocator), allocator);
-    
+
     return json;
 }
 
@@ -17207,7 +17207,7 @@ void from_json(const Value& j, TyreData::TyreData__tin& p, std::string field) {
 
 Value to_json(const TyreData& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
-    
+
     if (p.currentTyrePressure != 0) json.AddMember("currentTyrePressure", to_json(*(p.currentTyrePressure), allocator), allocator);
     if (p.tyreSidewallInformation != 0) json.AddMember("tyreSidewallInformation", to_json(*(p.tyreSidewallInformation), allocator), allocator);
     if (p.currentInsideAirTemperature != 0) json.AddMember("currentInsideAirTemperature", to_json(*(p.currentInsideAirTemperature), allocator), allocator);
@@ -17335,7 +17335,7 @@ Value to_json(const VehicleCurrentState& p, Document::AllocatorType& allocator) 
     json.AddMember("heading", to_json((p.heading), allocator), allocator);
     json.AddMember("longitudinalAcceleration", to_json((p.longitudinalAcceleration), allocator), allocator);
     json.AddMember("vehicleSize", to_json((p.vehicleSize), allocator), allocator);
-    
+
     return json;
 }
 
@@ -17367,7 +17367,7 @@ Value to_json(const IntermediatePointReference& p, Document::AllocatorType& allo
     json.AddMember("referenceHeading", to_json((p.referenceHeading), allocator), allocator);
     json.AddMember("lane", to_json((p.lane), allocator), allocator);
     json.AddMember("timeOfPos", to_json((p.timeOfPos), allocator), allocator);
-    
+
     return json;
 }
 
@@ -17396,7 +17396,7 @@ Value to_json(const IntermediatePointLane& p, Document::AllocatorType& allocator
     json.AddMember("lane", to_json((p.lane), allocator), allocator);
     json.AddMember("reason", to_json((p.reason), allocator), allocator);
     json.AddMember("timeOfPos", to_json((p.timeOfPos), allocator), allocator);
-    
+
     return json;
 }
 
@@ -17644,7 +17644,7 @@ Value to_json(const PathPredicted2_t& p, Document::AllocatorType& allocator) {
     json.AddMember("pathPredicted", to_json((p.pathPredicted), allocator), allocator);
     json.AddMember("usageIndication", to_json((p.usageIndication), allocator), allocator);
     json.AddMember("confidenceLevel", to_json((p.confidenceLevel), allocator), allocator);
-    
+
     return json;
 }
 
@@ -17913,7 +17913,7 @@ void from_json(const Value& j, VruClusterInformation_t& p, std::string field) {
 
 Value to_json(const ConnectionManeuverAssist_addGrpC& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
-    
+
     if (p.itsStationPosition != 0) json.AddMember("itsStationPosition", to_json(*(p.itsStationPosition), allocator), allocator);
     return json;
 }
@@ -17940,7 +17940,7 @@ Value to_json(const ConnectionTrajectory_addGrpC& p, Document::AllocatorType& al
     Value json(kObjectType);
     json.AddMember("nodes", to_json((p.nodes), allocator), allocator);
     json.AddMember("connectionID", to_json((p.connectionID), allocator), allocator);
-    
+
     return json;
 }
 
@@ -17964,7 +17964,7 @@ void from_json(const Value& j, ConnectionTrajectory_addGrpC& p, std::string fiel
 
 Value to_json(const MapData_addGrpC& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
-    
+
     if (p.signalHeadLocations != 0) json.AddMember("signalHeadLocations", to_json(*(p.signalHeadLocations), allocator), allocator);
     return json;
 }
@@ -18061,7 +18061,7 @@ Value to_json(const LaneAttributes& p, Document::AllocatorType& allocator) {
     json.AddMember("directionalUse", to_json_LaneDirection((p.directionalUse), allocator), allocator);
     json.AddMember("sharedWith", to_json_LaneSharing((p.sharedWith), allocator), allocator);
     json.AddMember("laneType", to_json((p.laneType), allocator), allocator);
-    
+
     return json;
 }
 
@@ -18259,7 +18259,7 @@ Value to_json(const CreditRq_t& p, Document::AllocatorType& allocator) {
     json.AddMember("refund", to_json((p.refund), allocator), allocator);
     json.AddMember("nonce", to_json((p.nonce), allocator), allocator);
     json.AddMember("key", to_json((p.key), allocator), allocator);
-    
+
     return json;
 }
 
@@ -18287,7 +18287,7 @@ Value to_json(const DebitRq_t& p, Document::AllocatorType& allocator) {
     json.AddMember("debitPaymentFee", to_json((p.debitPaymentFee), allocator), allocator);
     json.AddMember("nonce", to_json((p.nonce), allocator), allocator);
     json.AddMember("keyRef", to_json((p.keyRef), allocator), allocator);
-    
+
     return json;
 }
 
@@ -18474,7 +18474,7 @@ void from_json(const Value& j, TrailerCharacteristicsList& p, std::string field)
 
 Value to_json(const CompleteVehicleCharacteristics& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
-    
+
     if (p.tractor != 0) json.AddMember("tractor", to_json(*(p.tractor), allocator), allocator);
     if (p.trailer != 0) json.AddMember("trailer", to_json(*(p.trailer), allocator), allocator);
     return json;
@@ -18681,7 +18681,7 @@ Value to_json(const VAM_PDU_Descriptions_TrafficIslandPosition_t& p, Document::A
     Value json(kObjectType);
     json.AddMember("oneSide", to_json((p.oneSide), allocator), allocator);
     json.AddMember("otherSide", to_json((p.otherSide), allocator), allocator);
-    
+
     return json;
 }
 
@@ -18705,7 +18705,7 @@ void from_json(const Value& j, VAM_PDU_Descriptions_TrafficIslandPosition_t& p, 
 
 Value to_json(const VruMotionPredictionContainer& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
-    
+
     if (p.pathHistory != 0) json.AddMember("pathHistory", to_json(*(p.pathHistory), allocator), allocator);
     if (p.pathPrediction != 0) json.AddMember("pathPrediction", to_json(*(p.pathPrediction), allocator), allocator);
     if (p.safeDistance != 0) json.AddMember("safeDistance", to_json(*(p.safeDistance), allocator), allocator);
@@ -18860,7 +18860,7 @@ void from_json(const Value& j, PerceptionRegion& p, std::string field) {
         else { p.numberOfPerceivedObjects=nullptr; }
         if (j.HasMember("perceivedObjectIds")) { p.perceivedObjectIds = vanetza::asn1::allocate<PerceivedObjectIds_t>(); from_json(j["perceivedObjectIds"], *(p.perceivedObjectIds), "perceivedObjectIds"); }
         else { p.perceivedObjectIds=nullptr; }
-        
+
     } catch(VanetzaJSONException& ex) {
         ex.addContext(field);
         ex.rethrow();
@@ -18892,7 +18892,7 @@ void from_json(const Value& j, SensorInformation& p, std::string field) {
         else { p.perceptionRegionShape=nullptr; }
         if (j.HasMember("perceptionRegionConfidence")) { p.perceptionRegionConfidence = vanetza::asn1::allocate<ConfidenceLevel_t>(); from_json(j["perceptionRegionConfidence"], *(p.perceptionRegionConfidence), "perceptionRegionConfidence"); }
         else { p.perceptionRegionConfidence=nullptr; }
-        
+
     } catch(VanetzaJSONException& ex) {
         ex.addContext(field);
         ex.rethrow();
@@ -19035,7 +19035,7 @@ Value to_json(const TisTpgDRM& p, Document::AllocatorType& allocator) {
     json.AddMember("management", to_json((p.management), allocator), allocator);
     json.AddMember("situation", to_json((p.situation), allocator), allocator);
     json.AddMember("location", to_json((p.location), allocator), allocator);
-    
+
     return json;
 }
 
@@ -19062,7 +19062,7 @@ Value to_json(const TisTpgSNM& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("management", to_json((p.management), allocator), allocator);
     json.AddMember("tpgContainer", to_json((p.tpgContainer), allocator), allocator);
-    
+
     return json;
 }
 
@@ -19145,7 +19145,7 @@ void from_json(const Value& j, TisTpgTCM& p, std::string field) {
 Value to_json(const TisTpgVDRM& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("management", to_json((p.management), allocator), allocator);
-    
+
     return json;
 }
 
@@ -19174,7 +19174,7 @@ Value to_json(const VehicleSpecificData& p, Document::AllocatorType& allocator) 
     json.AddMember("rearLeftTyreData", to_json((p.rearLeftTyreData), allocator), allocator);
     json.AddMember("rearRightTyreData", to_json((p.rearRightTyreData), allocator), allocator);
     json.AddMember("spareTyreData", to_json((p.spareTyreData), allocator), allocator);
-    
+
     return json;
 }
 
@@ -19203,7 +19203,7 @@ void from_json(const Value& j, VehicleSpecificData& p, std::string field) {
 Value to_json(const TisTpgEOFM& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("management", to_json((p.management), allocator), allocator);
-    
+
     return json;
 }
 
@@ -19260,7 +19260,7 @@ Value to_json(const RTCMEM& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("header", to_json((p.header), allocator), allocator);
     json.AddMember("rtcmc", to_json((p.rtcmc), allocator), allocator);
-    
+
     return json;
 }
 
@@ -19395,7 +19395,7 @@ Value to_json(const Submaneuver& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("submaneuverId", to_json((p.submaneuverId), allocator), allocator);
     json.AddMember("trajectoryPoint", to_json((p.trajectoryPoint), allocator), allocator);
-    
+
     return json;
 }
 
@@ -19494,7 +19494,7 @@ Value to_json(const ObjectClassWithConfidence_t& p, Document::AllocatorType& all
     Value json(kObjectType);
     json.AddMember("objectClass", to_json((p.objectClass), allocator), allocator);
     json.AddMember("confidence", to_json((p.confidence), allocator), allocator);
-    
+
     return json;
 }
 
@@ -19808,7 +19808,7 @@ Value to_json(const SignalStatus& p, Document::AllocatorType& allocator) {
     json.AddMember("sequenceNumber", to_json((p.sequenceNumber), allocator), allocator);
     json.AddMember("id", to_json((p.id), allocator), allocator);
     json.AddMember("sigStatus", to_json((p.sigStatus), allocator), allocator);
-    
+
     return json;
 }
 
@@ -19866,7 +19866,7 @@ void from_json(const Value& j, SignalStatusList& p, std::string field) {
 
 Value to_json(const InternationalSign_destinationInformation& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
-    
+
     if (p.junctionDirection != 0) json.AddMember("junctionDirection", to_json(*(p.junctionDirection), allocator), allocator);
     if (p.roundaboutCwDirection != 0) json.AddMember("roundaboutCwDirection", to_json(*(p.roundaboutCwDirection), allocator), allocator);
     if (p.roundaboutCcwDirection != 0) json.AddMember("roundaboutCcwDirection", to_json(*(p.roundaboutCcwDirection), allocator), allocator);
@@ -19934,7 +19934,7 @@ Value to_json(const MapLocationContainer& p, Document::AllocatorType& allocator)
     Value json(kObjectType);
     json.AddMember("reference", to_json((p.reference), allocator), allocator);
     json.AddMember("parts", to_json((p.parts), allocator), allocator);
-    
+
     return json;
 }
 
@@ -20086,7 +20086,7 @@ Value to_json(const CoopAwareness& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("generationDeltaTime", to_json((p.generationDeltaTime), allocator), allocator);
     json.AddMember("camParameters", to_json((p.camParameters), allocator), allocator);
-    
+
     return json;
 }
 
@@ -20112,7 +20112,7 @@ Value to_json(const DENM& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("header", to_json((p.header), allocator), allocator);
     json.AddMember("denm", to_json((p.denm), allocator), allocator);
-    
+
     return json;
 }
 
@@ -20137,7 +20137,7 @@ void from_json(const Value& j, DENM& p, std::string field) {
 Value to_json(const AreaPolygon& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("polyPointList", to_json((p.polyPointList), allocator), allocator);
-    
+
     return json;
 }
 
@@ -20226,7 +20226,7 @@ Value to_json(const SREM& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("header", to_json((p.header), allocator), allocator);
     json.AddMember("srm", to_json((p.srm), allocator), allocator);
-    
+
     return json;
 }
 
@@ -20284,7 +20284,7 @@ Value to_json(const EV_RSR& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("header", to_json((p.header), allocator), allocator);
     json.AddMember("messageBody", to_json((p.messageBody), allocator), allocator);
-    
+
     return json;
 }
 
@@ -20382,7 +20382,7 @@ void from_json(const Value& j, TyreSetVariant& p, std::string field) {
 Value to_json(const Wgs84Trajectory& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("trajectoryPoints", to_json((p.trajectoryPoints), allocator), allocator);
-    
+
     return json;
 }
 
@@ -20439,7 +20439,7 @@ Value to_json(const ETSI_ITS_CDD_InterferenceManagementZone_t& p, Document::Allo
     Value json(kObjectType);
     json.AddMember("zoneDefinition", to_json((p.zoneDefinition), allocator), allocator);
     json.AddMember("managementInfo", to_json((p.managementInfo), allocator), allocator);
-    
+
     return json;
 }
 
@@ -20833,7 +20833,7 @@ Value to_json(const RccPart& p, Document::AllocatorType& allocator) {
     json.AddMember("relevanceZoneIds", to_json((p.relevanceZoneIds), allocator), allocator);
     json.AddMember("roadType", to_json((p.roadType), allocator), allocator);
     json.AddMember("laneConfiguration", to_json((p.laneConfiguration), allocator), allocator);
-    
+
     return json;
 }
 
@@ -21079,7 +21079,7 @@ Value to_json(const CAM& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("header", to_json((p.header), allocator), allocator);
     json.AddMember("cam", to_json((p.cam), allocator), allocator);
-    
+
     return json;
 }
 
@@ -21174,7 +21174,7 @@ Value to_json(const SPATEM& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("header", to_json((p.header), allocator), allocator);
     json.AddMember("spat", to_json((p.spat), allocator), allocator);
-    
+
     return json;
 }
 
@@ -21200,7 +21200,7 @@ Value to_json(const SSEM& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("header", to_json((p.header), allocator), allocator);
     json.AddMember("ssm", to_json((p.ssm), allocator), allocator);
-    
+
     return json;
 }
 
@@ -21279,7 +21279,7 @@ void from_json(const Value& j, ItsChargingStationData& p, std::string field) {
 Value to_json(const ImzmContainer& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("interferenceManagementZones", to_json((p.interferenceManagementZones), allocator), allocator);
-    
+
     return json;
 }
 
@@ -21431,7 +21431,7 @@ Value to_json(const Maneuver& p, Document::AllocatorType& allocator) {
     json.AddMember("currentStateAdvisedChange", to_json((p.currentStateAdvisedChange), allocator), allocator);
     json.AddMember("numberOfSubmaneuvers", to_json((p.numberOfSubmaneuvers), allocator), allocator);
     json.AddMember("submaneuver", to_json((p.submaneuver), allocator), allocator);
-    
+
     return json;
 }
 
@@ -21729,7 +21729,7 @@ Value to_json(const VruClusterInformationContainer& p, Document::AllocatorType& 
     json.AddMember("clusterBoundingBoxShape", to_json((p.clusterBoundingBoxShape), allocator), allocator);
     json.AddMember("clusterCardinalitySize", to_json((p.clusterCardinalitySize), allocator), allocator);
     json.AddMember("clusterProfiles", to_json_ClusterProfiles((p.clusterProfiles), allocator), allocator);
-    
+
     return json;
 }
 
@@ -21757,7 +21757,7 @@ Value to_json(const PerceivedObjectContainer_t& p, Document::AllocatorType& allo
     Value json(kObjectType);
     json.AddMember("numberOfPerceivedObjects", to_json((p.numberOfPerceivedObjects), allocator), allocator);
     json.AddMember("perceivedObjects", to_json((p.perceivedObjects), allocator), allocator);
-    
+
     return json;
 }
 
@@ -21783,7 +21783,7 @@ Value to_json(const MAPEM& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("header", to_json((p.header), allocator), allocator);
     json.AddMember("map", to_json((p.map), allocator), allocator);
-    
+
     return json;
 }
 
@@ -21841,7 +21841,7 @@ Value to_json(const ItsEVCSNData& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("totalNumberOfStations", to_json((p.totalNumberOfStations), allocator), allocator);
     json.AddMember("chargingStationsData", to_json((p.chargingStationsData), allocator), allocator);
-    
+
     return json;
 }
 
@@ -21867,7 +21867,7 @@ Value to_json(const ImzmParameters& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("basicContainer", to_json((p.basicContainer), allocator), allocator);
     json.AddMember("imzmContainer", to_json((p.imzmContainer), allocator), allocator);
-    
+
     return json;
 }
 
@@ -21893,7 +21893,7 @@ Value to_json(const IMZM_PDU_Descriptions_InterferenceManagementZone_t& p, Docum
     Value json(kObjectType);
     json.AddMember("zoneDefinition", to_json((p.zoneDefinition), allocator), allocator);
     json.AddMember("interferenceManagementInfo", to_json((p.interferenceManagementInfo), allocator), allocator);
-    
+
     return json;
 }
 
@@ -22216,7 +22216,7 @@ Value to_json(const WrappedCpmContainer& p, Document::AllocatorType& allocator) 
     Value json(kObjectType);
     json.AddMember("containerId", to_json((p.containerId), allocator), allocator);
     json.AddMember("containerData", to_json((p.containerData), allocator), allocator);
-    
+
     return json;
 }
 
@@ -22275,7 +22275,7 @@ Value to_json(const EVChargingSpotNotificationPOIMessage& p, Document::Allocator
     Value json(kObjectType);
     json.AddMember("poiHeader", to_json((p.poiHeader), allocator), allocator);
     json.AddMember("evcsnData", to_json((p.evcsnData), allocator), allocator);
-    
+
     return json;
 }
 
@@ -22301,7 +22301,7 @@ Value to_json(const InterferenceManagementZoneMessage& p, Document::AllocatorTyp
     Value json(kObjectType);
     json.AddMember("generationDeltaTime", to_json((p.generationDeltaTime), allocator), allocator);
     json.AddMember("imzmParameters", to_json((p.imzmParameters), allocator), allocator);
-    
+
     return json;
 }
 
@@ -22384,7 +22384,7 @@ Value to_json(const ManeuverAdviceContainer& p, Document::AllocatorType& allocat
     Value json(kObjectType);
     json.AddMember("numberOfExecutants", to_json((p.numberOfExecutants), allocator), allocator);
     json.AddMember("maneuver", to_json((p.maneuver), allocator), allocator);
-    
+
     return json;
 }
 
@@ -22483,7 +22483,7 @@ Value to_json(const VruAwareness& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("generationDeltaTime", to_json((p.generationDeltaTime), allocator), allocator);
     json.AddMember("vamParameters", to_json((p.vamParameters), allocator), allocator);
-    
+
     return json;
 }
 
@@ -22509,7 +22509,7 @@ Value to_json(const EvcsnPdu& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("header", to_json((p.header), allocator), allocator);
     json.AddMember("evcsn", to_json((p.evcsn), allocator), allocator);
-    
+
     return json;
 }
 
@@ -22535,7 +22535,7 @@ Value to_json(const IMZM& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("header", to_json((p.header), allocator), allocator);
     json.AddMember("imzm", to_json((p.imzm), allocator), allocator);
-    
+
     return json;
 }
 
@@ -22561,7 +22561,7 @@ Value to_json(const TisTpgTransactionsPdu& p, Document::AllocatorType& allocator
     Value json(kObjectType);
     json.AddMember("header", to_json((p.header), allocator), allocator);
     json.AddMember("tisTpgTransaction", to_json((p.tisTpgTransaction), allocator), allocator);
-    
+
     return json;
 }
 
@@ -22710,7 +22710,7 @@ Value to_json(const VAM& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("header", to_json((p.header), allocator), allocator);
     json.AddMember("vam", to_json((p.vam), allocator), allocator);
-    
+
     return json;
 }
 
@@ -22800,7 +22800,7 @@ Value to_json(const WrappedMcmInformationBlocks& p, Document::AllocatorType& all
     Value json(kObjectType);
     json.AddMember("basicContainer", to_json((p.basicContainer), allocator), allocator);
     json.AddMember("mcmContainer", to_json((p.mcmContainer), allocator), allocator);
-    
+
     return json;
 }
 
@@ -22852,7 +22852,7 @@ Value to_json(const IVIM& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("header", to_json((p.header), allocator), allocator);
     json.AddMember("ivi", to_json((p.ivi), allocator), allocator);
-    
+
     return json;
 }
 
@@ -22878,7 +22878,7 @@ Value to_json(const MCM& p, Document::AllocatorType& allocator) {
     Value json(kObjectType);
     json.AddMember("header", to_json((p.header), allocator), allocator);
     json.AddMember("payload", to_json((p.payload), allocator), allocator);
-    
+
     return json;
 }
 

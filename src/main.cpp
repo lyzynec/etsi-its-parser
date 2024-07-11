@@ -16,12 +16,9 @@
 #include "vanetza/asn1/cam.hpp"
 #include "vanetza/asn1/spatem.hpp"
 #include "vanetza/asn1/mapem.hpp"
-//#include "vanetza/asn1/ivim.hpp"
-//#include "vanetza/asn1/srem.hpp"
 #include "vanetza/asn1/ssem.hpp"
-//#include "vanetza/asn1/cpm.hpp"
 
-
+/* Local Includes */
 #include "headers.h"
 #include "indicator.h"
 #include "message_id.h"

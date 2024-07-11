@@ -1,3 +1,6 @@
 [submodule "vanetza"]
 	path = vanetza
 	url = https://code.nap.av.it.pt/mobility-networks/vanetza.git
+[submodule "rapidjson"]
+	path = rapidjson
+	url = https://github.com/Tencent/rapidjson.git

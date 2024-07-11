@@ -34,6 +34,8 @@ add_executable(etsi_its_parser src/main.cpp
         src/message_id.h
         src/build_json.h
         src/build_json.cpp
+        src/asn1json.hpp
+        src/asn1json.cpp
 )
 
 find_package(Boost REQUIRED)
@@ -47,8 +49,10 @@ mark_as_advanced(VANETZA_ASN1_WITH_ASN1C VANETZA_EXPORT_PACKAGE VANETZA_NET_WITH
 
 target_link_libraries(etsi_its_parser PUBLIC Vanetza::vanetza)
 
-find_package(RapidJSON REQUIRED)
-target_link_libraries(etsi_its_parser PUBLIC RapidJSON)
+#find_package(RapidJSON REQUIRED)
+#target_link_libraries(etsi_its_parser PUBLIC RapidJSon)
+
+target_include_directories(etsi_its_parser PUBLIC vanetza/tools/socktap)
 
 find_package(PcapPlusPlus REQUIRED)
-target_link_libraries(etsi_its_parser PUBLIC PcapPlusPlus)
+target_link_libraries(etsi_its_parser PUBLIC pcap)
