@@ -1,35 +1,42 @@
 /* Standard Library Includes */
 #include <iostream>
+#include <fstream>
 #include <string>
+#include <filesystem>
 
 /* Boost Includes */
 #include <boost/optional.hpp>
 
 /* PcapPlusPlus Includes */
-// TODO
-
-/* RapidJSON Includes */
-// TODO
+#include <pcap.h>
 
 /* Vanetza Includes */
-#include <vanetza/asn1/packet_visitor.hpp>
-#include <vanetza/asn1/denm.hpp>
-#include <vanetza/asn1/cam.hpp>
-#include <vanetza/asn1/spatem.hpp>
-#include <vanetza/asn1/mapem.hpp>
-#include <vanetza/asn1/ivim.hpp>
-#include <vanetza/asn1/srem.hpp>
-#include <vanetza/asn1/ssem.hpp>
-#include <vanetza/asn1/cpm.hpp>
-
+#include "vanetza/asn1/packet_visitor.hpp"
+#include "vanetza/asn1/denm.hpp"
+#include "vanetza/asn1/cam.hpp"
+#include "vanetza/asn1/spatem.hpp"
+#include "vanetza/asn1/mapem.hpp"
+//#include "vanetza/asn1/ivim.hpp"
+//#include "vanetza/asn1/srem.hpp"
+#include "vanetza/asn1/ssem.hpp"
+//#include "vanetza/asn1/cpm.hpp"
 
 
 #include "headers.h"
 #include "indicator.h"
 #include "message_id.h"
 
+#include "build_json.h"
 
-boost::optional<std::string> parse_msg_radiotap(vanetza::ByteBuffer byteBuffer) {
+boost::optional<std::string> parse_msg_radiotap(vanetza::ByteBuffer byteBuffer, double time_reception) {
+
+    json_context_t context {
+            .time_reception = time_reception,
+            .rssi = 0,
+            .packet_size = (int)byteBuffer.size(),
+            .receiver_id = 0,
+            .receiver_type = 0,
+    };
 
     size_t header_length = 0;
     auto radiotap = *(radiotap_header_t*)&(byteBuffer[header_length]);
@@ -80,7 +87,7 @@ boost::optional<std::string> parse_msg_radiotap(vanetza::ByteBuffer byteBuffer) 
         return boost::none;
     }
 
-    std::string result;
+    Document json_document;
 
     if (messageID == MESSAGE_ID_DENM) {
         vanetza::asn1::PacketVisitor<vanetza::asn1::Denm> visitor;
@@ -91,6 +98,8 @@ boost::optional<std::string> parse_msg_radiotap(vanetza::ByteBuffer byteBuffer) 
 
         DENM_t cDenm = {(*denm)->header, (*denm)->denm};
 
+        json_document = buildJSON(cDenm, context);
+
     } else if (messageID == MESSAGE_ID_CAM) {
         vanetza::asn1::PacketVisitor<vanetza::asn1::Cam> visitor;
         std::shared_ptr<const vanetza::asn1::Cam> cam = boost::apply_visitor(visitor, finishedPacket);
@@ -99,6 +108,8 @@ boost::optional<std::string> parse_msg_radiotap(vanetza::ByteBuffer byteBuffer) 
         }
 
         CAM_t cCam = {(*cam)->header, (*cam)->cam};
+
+        json_document = buildJSON(cCam, context);
 
     } else if (messageID == MESSAGE_ID_SPATEM) {
         vanetza::asn1::PacketVisitor<vanetza::asn1::Spatem> visitor;
@@ -109,6 +120,8 @@ boost::optional<std::string> parse_msg_radiotap(vanetza::ByteBuffer byteBuffer) 
 
         SPATEM_t cSpatem = {(*spatem)->header, (*spatem)->spat};
 
+        json_document = buildJSON(cSpatem, context);
+
     } else if (messageID == MESSAGE_ID_MAPEM) {
         vanetza::asn1::PacketVisitor<vanetza::asn1::Mapem> visitor;
         std::shared_ptr<const vanetza::asn1::Mapem> mapem = boost::apply_visitor(visitor, finishedPacket);
@@ -118,48 +131,93 @@ boost::optional<std::string> parse_msg_radiotap(vanetza::ByteBuffer byteBuffer) 
 
         MAPEM_t cMapem = {(*mapem)->header, (*mapem)->map};
 
-    } else if (messageID == MESSAGE_ID_IVIM) {
-        vanetza::asn1::PacketVisitor<vanetza::asn1::Ivim> visitor;
-        std::shared_ptr<const vanetza::asn1::Ivim> ivim = boost::apply_visitor(visitor, finishedPacket);
-        if (ivim == nullptr) {
-            return boost::none;
-        }
+        json_document = buildJSON(cMapem, context);
 
-        IVIM_t cIvim = {(*ivim)->header, (*ivim)->ivi};
-
-    } else if (messageID == MESSAGE_ID_SREM) {
-        vanetza::asn1::PacketVisitor<vanetza::asn1::Srem> visitor;
-        std::shared_ptr<const vanetza::asn1::Srem> srem = boost::apply_visitor(visitor, finishedPacket);
-        if (srem == nullptr) {
-            return boost::none;
-        }
-
-        SREM_t cSrem = {(*srem)->header, (*srem)->srm};
-
-    } else if (messageID == MESSAGE_ID_SSEM) {
-        vanetza::asn1::PacketVisitor<vanetza::asn1::Ssem> visitor;
-        std::shared_ptr<const vanetza::asn1::Ssem> ssem = boost::apply_visitor(visitor, finishedPacket);
-        if (ssem == nullptr) {
-            return boost::none;
-        }
-
-        SSEM_t cSsem = {(*ssem)->header, (*ssem)->ssm};
-
-    } else if (messageID == MESSAGE_ID_CPM) {
-        vanetza::asn1::PacketVisitor<vanetza::asn1::Cpm> visitor;
-        std::shared_ptr<const vanetza::asn1::Cpm> cpm = boost::apply_visitor(visitor, finishedPacket);
-        if (cpm == nullptr) {
-            return boost::none;
-        }
-
-        CPM_t cCpm = {(*cpm)->header, (*cpm)->cpm};
-
+    } else {
+        return boost::none;
     }
 
+    // This is just conversion to string to simplify my life.
+    StringBuffer strbuf;
+    strbuf.Clear();
 
-    return result;
+    Writer<StringBuffer> writer(strbuf);
+    json_document.Accept(writer);
+
+    std::string out = strbuf.GetString();
+
+    return out;
 }
 
-int main() {
-    return 0;
+typedef struct user_data {
+    std::ofstream* output_stream;
+    size_t message_counter;
+} user_data_t;
+
+void pcap_loop_callback(u_char *pUserData, const struct pcap_pkthdr *pkthdr, const u_char *packet) {
+    auto userData = (user_data_t *) (pUserData);
+
+
+    vanetza::ByteBuffer byteBuffer(packet, packet + pkthdr->len);
+    double timestamp = (double)pkthdr->ts.tv_sec + ( (double)pkthdr->ts.tv_usec / 1e-9 );
+    auto res = parse_msg_radiotap(byteBuffer, timestamp);
+
+    if ( res.has_value() ) {
+        if (userData->message_counter > 0) {
+            *userData->output_stream << ",";
+        }
+        *userData->output_stream << res.value();
+        userData->message_counter += 1;
+    }
+
+}
+
+// etsi-its-parser [input file] [output file]
+int main(int argc, char **argv) {
+
+    if (argc != 3) {
+        std::cerr
+                << "ERROR: Not enough arguments provided, provide them in format etsi-its-parser [input file] [output file]."
+                << std::endl;
+
+        return EXIT_FAILURE;
+    }
+
+    {
+        std::filesystem::path inputFilePath(argv[1]);
+
+        if (!std::filesystem::exists(inputFilePath)) {
+            std::cerr << "ERROR: Input file does not exist." << std::endl;
+
+            return EXIT_FAILURE;
+        }
+    }
+
+    std::ofstream outputFile(argv[2]);
+    if (!outputFile.is_open()) {
+        std::cerr << "ERROR: Could not open output file." << std::endl;
+    }
+
+    user_data_t userData {
+        .output_stream = &outputFile,
+        .message_counter = 0,
+    };
+
+    char pcap_errbuf[PCAP_ERRBUF_SIZE];
+    auto pcap_fp = pcap_open_offline(argv[1], pcap_errbuf);
+
+    if (pcap_fp == nullptr) {
+        std::cerr << "ERROR: Failure to open pcap file: " << pcap_errbuf << std::endl;
+
+        return EXIT_FAILURE;
+    }
+
+    outputFile << "[";
+    if (pcap_loop(pcap_fp, 0, pcap_loop_callback, (u_char *) &userData) < 0) {
+        std::cerr << "ERROR: There was error in pcap_loop: " << pcap_errbuf << std::endl;
+    }
+    outputFile << "]";
+
+
+    return EXIT_SUCCESS;
 }

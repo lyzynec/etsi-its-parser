@@ -1,11 +1,11 @@
 #include "indicator.h"
 
-#include <vanetza/geonet/mib.hpp>
-#include <vanetza/geonet/indication_context.hpp>
-#include <vanetza/geonet/tests/security_context.hpp>
-#include <vanetza/common/manual_runtime.hpp>
+#include "vanetza/geonet/mib.hpp"
+#include "vanetza/geonet/indication_context.hpp"
+#include "vanetza/geonet/tests/security_context.hpp"
+#include "vanetza/common/manual_runtime.hpp"
 
-#include <vanetza/btp/data_indication.hpp>
+#include "vanetza/btp/data_indication.hpp"
 
 UpPacketPtr indicate_basic(vanetza::geonet::IndicationContextBasic& ctx, vanetza::geonet::ManagementInformationBase& mib);
 UpPacketPtr indicate_common(vanetza::geonet::IndicationContext& ctx, const vanetza::geonet::BasicHeader& basic, vanetza::geonet::ManagementInformationBase& mib);
@@ -119,7 +119,7 @@ UpPacketPtr indicate_secured(vanetza::geonet::IndicationContextBasic& ctx, const
     } else if (securityEntity) {
         // Decap packet
         using namespace vanetza::security;
-        DecapConfirm decap_confirm = securityEntity->decapsulate_packet(SecuredMessageView { *secured_message });
+        DecapConfirm decap_confirm = securityEntity->decapsulate_packet(DecapRequest { *secured_message });
         ctx.service_primitive().security_report = decap_confirm.report;
         ctx.service_primitive().its_aid = decap_confirm.its_aid;
         ctx.service_primitive().permissions = decap_confirm.permissions;

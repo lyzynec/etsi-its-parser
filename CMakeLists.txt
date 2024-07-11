@@ -27,11 +27,13 @@ function(check_git_submodule)
     endif()
 endfunction()
 
-add_executable(etsi_its_parser main.cpp
-        headers.h
-        indicator.cpp
-        indicator.h
-        message_id.h
+add_executable(etsi_its_parser src/main.cpp
+        src/headers.h
+        src/indicator.cpp
+        src/indicator.h
+        src/message_id.h
+        src/build_json.h
+        src/build_json.cpp
 )
 
 find_package(Boost REQUIRED)
@@ -45,8 +47,8 @@ mark_as_advanced(VANETZA_ASN1_WITH_ASN1C VANETZA_EXPORT_PACKAGE VANETZA_NET_WITH
 
 target_link_libraries(etsi_its_parser PUBLIC Vanetza::vanetza)
 
-#check_git_submodule(PATH rapidjson REQUIRED_FILES CMakeLists.txt)
-#add_subdirectory(${PROJECT_SOURCE_DIR}/rapidjson)
+find_package(RapidJSON REQUIRED)
+target_link_libraries(etsi_its_parser PUBLIC RapidJSON)
 
-#check_git_submodule(PATH PcapPlusPlus REQUIRED_FILES CMakeLists.txt)
-#add_subdirectory(${PROJECT_SOURCE_DIR}/PcapPlusPlus)
+find_package(PcapPlusPlus REQUIRED)
+target_link_libraries(etsi_its_parser PUBLIC PcapPlusPlus)
