@@ -77,10 +77,6 @@ UpPacketPtr indicate_common(vanetza::geonet::IndicationContext& ctx, const vanet
     if (!common) {
         // packet_dropped(PacketDropReason::Parse_Common_Header);
         return nullptr;
-    } else if (common->maximum_hop_limit < basic.hop_limit) {
-        // step 1) check the MHL field
-        // packet_dropped(PacketDropReason::Hop_Limit);
-        return nullptr;
     } else {
         vanetza::geonet::DataIndication& indication = ctx.service_primitive();
         indication.traffic_class = common->traffic_class;
