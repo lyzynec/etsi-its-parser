@@ -5,10 +5,6 @@
 
 typedef struct json_context {
     double time_reception;
-    int rssi;
-    int packet_size;
-    int receiver_id;
-    int receiver_type;
 } json_context_t;
 
 Document buildJSON(DENM_t message, json_context_t context);

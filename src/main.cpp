@@ -29,10 +29,6 @@ boost::optional<std::string> parse_msg_radiotap(vanetza::ByteBuffer byteBuffer, 
 
     json_context_t context {
             .time_reception = time_reception,
-            .rssi = 0,
-            .packet_size = (int)byteBuffer.size(),
-            .receiver_id = 0,
-            .receiver_type = 0,
     };
 
     size_t header_length = 0;
@@ -151,7 +147,8 @@ void pcap_loop_callback(u_char *pUserData, const struct pcap_pkthdr *pkthdr, con
 
 
     vanetza::ByteBuffer byteBuffer(packet, packet + pkthdr->len);
-    double timestamp = (double)pkthdr->ts.tv_sec + ( (double)pkthdr->ts.tv_usec / 1e-9 );
+
+    double timestamp = (double)(pkthdr->ts.tv_sec) + (double)(pkthdr->ts.tv_usec) / 1e6;
     auto res = parse_msg_radiotap(byteBuffer, timestamp);
 
     if ( res.has_value() ) {
