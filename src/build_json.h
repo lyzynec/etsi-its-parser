@@ -8,6 +8,7 @@ typedef struct json_context {
 } json_context_t;
 
 Document buildJSON(DENM_t message, json_context_t context);
+Document buildJSON(SREM_t message, json_context_t context);
 Document buildJSON(CAM_t message, json_context_t context);
 Document buildJSON(SPATEM_t message, json_context_t context);
 Document buildJSON(MAPEM_t message, json_context_t context);

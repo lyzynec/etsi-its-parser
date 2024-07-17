@@ -84,6 +84,18 @@ boost::optional<std::string> parse_msg_radiotap(vanetza::ByteBuffer byteBuffer, 
     }
 
     if (!found) {
+        vanetza::asn1::PacketVisitor<vanetza::asn1::Srem> visitor;
+        std::shared_ptr<const vanetza::asn1::Srem> srem = boost::apply_visitor(visitor, finishedPacket);
+        if (srem != nullptr) {
+            SREM_t cSrem = {(*srem)->header, (*srem)->srm};
+
+            json_document = buildJSON(cSrem, context);
+
+            found = true;
+        }
+    }
+
+    if (!found) {
         vanetza::asn1::PacketVisitor<vanetza::asn1::Cam> visitor;
         std::shared_ptr<const vanetza::asn1::Cam> cam = boost::apply_visitor(visitor, finishedPacket);
         if (cam != nullptr) {
