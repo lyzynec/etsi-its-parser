@@ -17,11 +17,11 @@
 #include "vanetza/asn1/spatem.hpp"
 #include "vanetza/asn1/mapem.hpp"
 #include "vanetza/asn1/ssem.hpp"
+#include "vanetza/asn1/srem.hpp"
 
 /* Local Includes */
 #include "headers.h"
 #include "indicator.h"
-#include "message_id.h"
 
 #include "build_json.h"
 
@@ -38,7 +38,7 @@ boost::optional<std::string> parse_msg_radiotap(vanetza::ByteBuffer byteBuffer, 
     auto ieee_qos = *(IEEE_QoS_t*)&(byteBuffer[header_length]);
     header_length += sizeof(IEEE_QoS_t);
 
-    auto logical_link_control = *(logical_link_control_t *)&(byteBuffer[header_length]);
+    //auto logical_link_control = *(logical_link_control_t *)&(byteBuffer[header_length]);
     header_length += sizeof(logical_link_control_t);
 
     byteBuffer.erase(byteBuffer.begin(), byteBuffer.begin() + (long)header_length);
@@ -68,10 +68,11 @@ boost::optional<std::string> parse_msg_radiotap(vanetza::ByteBuffer byteBuffer, 
 
     auto finishedPacket = *finishedPacketPtr;
 
+
     Document json_document;
 
     bool found = false;
-    if (!found) {
+    {
         vanetza::asn1::PacketVisitor<vanetza::asn1::Denm> visitor;
         std::shared_ptr<const vanetza::asn1::Denm> denm = boost::apply_visitor(visitor, finishedPacket);
         if (denm != nullptr) {
@@ -90,6 +91,18 @@ boost::optional<std::string> parse_msg_radiotap(vanetza::ByteBuffer byteBuffer, 
             SREM_t cSrem = {(*srem)->header, (*srem)->srm};
 
             json_document = buildJSON(cSrem, context);
+
+            found = true;
+        }
+    }
+
+    if (!found) {
+        vanetza::asn1::PacketVisitor<vanetza::asn1::Ssem> visitor;
+        std::shared_ptr<const vanetza::asn1::Ssem> ssem = boost::apply_visitor(visitor, finishedPacket);
+        if (ssem != nullptr) {
+            SSEM_t cSsem = {(*ssem)->header, (*ssem)->ssm};
+
+            json_document = buildJSON(cSsem, context);
 
             found = true;
         }

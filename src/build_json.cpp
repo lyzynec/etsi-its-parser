@@ -22,6 +22,17 @@ Document buildJSON(SREM_t message, json_context_t context) {
     return document;
 }
 
+Document buildJSON(SSEM_t message, json_context_t context) {
+
+    Document document(kObjectType);
+    Document::AllocatorType &allocator = document.GetAllocator();
+
+    document.AddMember("timeStamp", context.time_reception, allocator)
+            .AddMember("fields", to_json(message, allocator), allocator);
+
+    return document;
+}
+
 Document buildJSON(CAM_t message, json_context_t context) {
 
     Document document(kObjectType);
