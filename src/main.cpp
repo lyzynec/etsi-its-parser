@@ -75,7 +75,7 @@ boost::optional<std::string> parse_msg_radiotap(vanetza::ByteBuffer byteBuffer, 
     {
         vanetza::asn1::PacketVisitor<vanetza::asn1::Denm> visitor;
         std::shared_ptr<const vanetza::asn1::Denm> denm = boost::apply_visitor(visitor, finishedPacket);
-        if (denm != nullptr) {
+        if (denm != nullptr && (*denm)->header.messageID == 1) {
             DENM_t cDenm = {(*denm)->header, (*denm)->denm};
 
             json_document = buildJSON(cDenm, context);
@@ -87,7 +87,7 @@ boost::optional<std::string> parse_msg_radiotap(vanetza::ByteBuffer byteBuffer, 
     if (!found) {
         vanetza::asn1::PacketVisitor<vanetza::asn1::Srem> visitor;
         std::shared_ptr<const vanetza::asn1::Srem> srem = boost::apply_visitor(visitor, finishedPacket);
-        if (srem != nullptr) {
+        if (srem != nullptr && (*srem)->header.messageID == 9) {
             SREM_t cSrem = {(*srem)->header, (*srem)->srm};
 
             json_document = buildJSON(cSrem, context);
@@ -99,7 +99,7 @@ boost::optional<std::string> parse_msg_radiotap(vanetza::ByteBuffer byteBuffer, 
     if (!found) {
         vanetza::asn1::PacketVisitor<vanetza::asn1::Ssem> visitor;
         std::shared_ptr<const vanetza::asn1::Ssem> ssem = boost::apply_visitor(visitor, finishedPacket);
-        if (ssem != nullptr) {
+        if (ssem != nullptr && (*ssem)->header.messageID == 10) {
             SSEM_t cSsem = {(*ssem)->header, (*ssem)->ssm};
 
             json_document = buildJSON(cSsem, context);
@@ -111,7 +111,7 @@ boost::optional<std::string> parse_msg_radiotap(vanetza::ByteBuffer byteBuffer, 
     if (!found) {
         vanetza::asn1::PacketVisitor<vanetza::asn1::Cam> visitor;
         std::shared_ptr<const vanetza::asn1::Cam> cam = boost::apply_visitor(visitor, finishedPacket);
-        if (cam != nullptr) {
+        if (cam != nullptr && (*cam)->header.messageID == 2) {
             CAM_t cCam = {(*cam)->header, (*cam)->cam};
 
             json_document = buildJSON(cCam, context);
@@ -123,7 +123,7 @@ boost::optional<std::string> parse_msg_radiotap(vanetza::ByteBuffer byteBuffer, 
     if (!found) {
         vanetza::asn1::PacketVisitor<vanetza::asn1::Spatem> visitor;
         std::shared_ptr<const vanetza::asn1::Spatem> spatem = boost::apply_visitor(visitor, finishedPacket);
-        if (spatem != nullptr) {
+        if (spatem != nullptr && (*spatem)->header.messageID == 4) {
             SPATEM_t cSpatem = {(*spatem)->header, (*spatem)->spat};
 
             json_document = buildJSON(cSpatem, context);
@@ -137,7 +137,7 @@ boost::optional<std::string> parse_msg_radiotap(vanetza::ByteBuffer byteBuffer, 
     if (!found) {
         vanetza::asn1::PacketVisitor<vanetza::asn1::Mapem> visitor;
         std::shared_ptr<const vanetza::asn1::Mapem> mapem = boost::apply_visitor(visitor, finishedPacket);
-        if (mapem != nullptr) {
+        if (mapem != nullptr && (*mapem)->header.messageID == 5) {
             MAPEM_t cMapem = {(*mapem)->header, (*mapem)->map};
 
             json_document = buildJSON(cMapem, context);
